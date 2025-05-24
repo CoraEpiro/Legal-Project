@@ -7,6 +7,23 @@ from pathlib import Path
 import bcrypt
 from langdetect import detect
 import requests
+from langdetect import detect, LangDetectException
+
+def detect_language_fallback(text):
+    try:
+        # If contains clear Azerbaijani letters, force az
+        special_az_chars = ["ə", "ğ", "ı", "ö", "ç", "ş", "ü"]
+        if any(char in text.lower() for char in special_az_chars):
+            return "az"
+
+        # If very short input, assume az if context is likely
+        if len(text.split()) < 6:
+            return "az"
+
+        # Use langdetect normally
+        return detect(text)
+    except LangDetectException:
+        return "az"  # fallback to az if detection fails
 
 USERS_FILE = Path("users.json")
 CONVO_FILE = Path("conversations.json")
@@ -189,7 +206,7 @@ def ask():
         return jsonify({"error": "No question provided"}), 400
 
     try:
-        language = detect(user_question)
+        language = detect_language_fallback(user_question)
         print("🔤 Detected language:", language)
 
         if language == "az":
