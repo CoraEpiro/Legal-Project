@@ -6,11 +6,25 @@ import json
 from pathlib import Path
 import bcrypt
 from langdetect import detect
+import requests
 
 USERS_FILE = Path("users.json")
 CONVO_FILE = Path("conversations.json")
 
-import requests
+TRUSTED_SOURCES = {
+    "az": "https://e-qanun.az",
+    "en": "https://www.law.cornell.edu/",
+    "de": "https://www.gesetze-im-internet.de/",
+    "ru": "http://www.consultant.ru/"
+}
+
+app = Flask(__name__, static_folder='static')
+app.secret_key = "secret123"
+app.debug = True
+
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+_MODEL = "gpt-4o-mini"
 
 def search_trusted_sources(query):
     api_key = os.getenv("GOOGLE_CSE_API_KEY")
@@ -22,7 +36,6 @@ def search_trusted_sources(query):
         "key": api_key,
         "num": 3
     }
-
     try:
         response = requests.get(url, params=params)
         data = response.json()
@@ -35,7 +48,7 @@ def search_trusted_sources(query):
 
         if not items:
             return "Üzr istəyirik, uyğun rəsmi hüquqi mənbə tapılmadı. https://e-qanun.az saytında əl ilə axtarış edə bilərsiniz."
-        
+
         result = "Sualınıza uyğun ola biləcək rəsmi hüquqi mənbələr:\n\n"
         for item in items:
             result += f"- {item['title']}\n  {item['link']}\n\n"
@@ -43,23 +56,6 @@ def search_trusted_sources(query):
     except Exception as e:
         print("❌ Google Search Error:", e)
         return "Axtarış zamanı xəta baş verdi. Zəhmət olmasa bir qədər sonra yenidən cəhd edin."
-
-
-TRUSTED_SOURCES = {
-    "az": "https://e-qanun.az",
-    "en": "https://www.law.cornell.edu/",
-    "de": "https://www.gesetze-im-internet.de/",
-    "ru": "http://www.consultant.ru/"
-}
-
-
-app = Flask(__name__, static_folder='static')
-app.secret_key = "secret123"
-app.debug = True
-
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-_MODEL = "gpt-4o-mini"
 
 def load_users():
     if USERS_FILE.exists():
@@ -100,14 +96,13 @@ def save_message(user_id, chat_id, role, content):
 def list_user_chats(user_id):
     conversations = load_conversations()
     return [
-    {"id": cid, "name": chat_data.get("name", cid)}
-    for cid, chat_data in conversations.get(str(user_id), {}).items()
-]
+        {"id": cid, "name": chat_data.get("name", cid)}
+        for cid, chat_data in conversations.get(str(user_id), {}).items()
+    ]
 
 def get_chat_messages(user_id, chat_id):
     conversations = load_conversations()
     return conversations.get(str(user_id), {}).get(chat_id, [])
-
 
 users = load_users()
 
@@ -142,17 +137,11 @@ def get_chat(chat_id):
 
     conversations = load_conversations()
     user_chats = conversations.get(str(user_id), {})
-
     chat_data = user_chats.get(chat_id)
     if not chat_data:
         return jsonify({"messages": []})
 
-    # Handle both old and new formats
-    if isinstance(chat_data, list):
-        return jsonify({"messages": chat_data})
-    else:
-        return jsonify({"messages": chat_data.get("messages", [])})
-
+    return jsonify({"messages": chat_data if isinstance(chat_data, list) else chat_data.get("messages", [])})
 
 @app.route("/api/delete_chat/<chat_id>", methods=["DELETE"])
 def delete_chat(chat_id):
@@ -182,15 +171,7 @@ def save_chat():
 
     conversations = load_conversations()
     uid = str(user_id)
-
-    if uid not in conversations:
-        conversations[uid] = {}
-
-    conversations[uid][chat_id] = {
-        "name": name,
-        "messages": messages
-    }
-
+    conversations.setdefault(uid, {})[chat_id] = {"name": name, "messages": messages}
     save_conversations(conversations)
     return jsonify(success=True)
 
@@ -206,25 +187,22 @@ def ask():
 
     if not user_question:
         return jsonify({"error": "No question provided"}), 400
-    
-
 
     try:
+        language = detect(user_question)
+        print("🔤 Detected language:", language)
+
         if language == "az":
             answer = search_trusted_sources(user_question)
+        elif language in TRUSTED_SOURCES:
+            source = TRUSTED_SOURCES[language]
+            answer = (
+                f"Bu hüquqi məsələ ilə bağlı dəqiq məlumat üçün rəsmi mənbəyə baxın: {source}"
+                if language == "az" else
+                f"Please consult the official legal source for accurate information: {source}"
+            )
         else:
-            language = detect(user_question)
-            print("🔤 Detected language:", language)
-
-            if language in TRUSTED_SOURCES:
-                source = TRUSTED_SOURCES[language]
-                answer = (
-                    f"Bu hüquqi məsələ ilə bağlı dəqiq məlumat üçün rəsmi mənbəyə baxın: {source}"
-                    if language == "az" else
-                    f"Please consult the official legal source for accurate information: {source}"
-                )
-            else:
-                answer = "Sorry, I can only handle Azerbaijani, English, German, and Russian legal questions."
+            answer = "Sorry, I can only handle Azerbaijani, English, German, and Russian legal questions."
 
         save_message(user_id, chat_id, "user", user_question)
         save_message(user_id, chat_id, "bot", answer)
@@ -234,7 +212,6 @@ def ask():
         import traceback
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -248,10 +225,7 @@ def login():
     errors = {}
     users = load_users()
 
-    user_id, user_data = next(
-        ((uid, u) for uid, u in users.items() if u.get("email") == email),
-        (None, None)
-    )
+    user_id, user_data = next(((uid, u) for uid, u in users.items() if u.get("email") == email), (None, None))
 
     if not user_data:
         errors["email"] = "Email not found"
@@ -262,7 +236,7 @@ def login():
         return jsonify(success=False, errors=errors)
 
     session.clear()
-    session.permanent = data.get("remember", False)  # <- this line is new
+    session.permanent = data.get("remember", False)
     session["user_id"] = user_id
     session["username"] = user_data["username"]
 
