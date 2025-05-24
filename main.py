@@ -164,6 +164,9 @@ def ask():
         return jsonify({"error": "No question provided"}), 400
 
     try:
+        print("🔍 Incoming /ask request")
+        print("🔑 OPENAI_API_KEY is:", os.getenv("OPENAI_API_KEY"))
+
         response = client.chat.completions.create(
             model=_MODEL,
             messages=[
@@ -178,7 +181,10 @@ def ask():
 
         return jsonify({"answer": answer})
     except Exception as e:
+        import traceback
+        traceback.print_exc()  # full stack trace
         return jsonify({"error": str(e)}), 500
+
 
 
 
