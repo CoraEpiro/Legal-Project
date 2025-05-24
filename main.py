@@ -1,29 +1,27 @@
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for
-from openai import OpenAI
-import os
-from dotenv import load_dotenv
-import json
-from pathlib import Path
-import bcrypt
-from langdetect import detect
-import requests
 from langdetect import detect, LangDetectException
+from dotenv import load_dotenv
+from bs4 import BeautifulSoup
+from openai import OpenAI
+from pathlib import Path
+import requests
+import bcrypt
+import json
+import os
+import re
+from playwright.sync_api import sync_playwright
+from flask_dance.contrib.google import make_google_blueprint, google
 
 def detect_language_fallback(text):
     try:
-        # If contains clear Azerbaijani letters, force az
         special_az_chars = ["ə", "ğ", "ı", "ö", "ç", "ş", "ü"]
         if any(char in text.lower() for char in special_az_chars):
             return "az"
-
-        # If very short input, assume az if context is likely
         if len(text.split()) < 6:
             return "az"
-
-        # Use langdetect normally
         return detect(text)
     except LangDetectException:
-        return "az"  # fallback to az if detection fails
+        return "az"
 
 USERS_FILE = Path("users.json")
 CONVO_FILE = Path("conversations.json")
@@ -38,41 +36,100 @@ TRUSTED_SOURCES = {
 app = Flask(__name__, static_folder='static')
 app.secret_key = "secret123"
 app.debug = True
+app.config["SESSION_COOKIE_SECURE"] = False
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  # Remove in production
+
+google_bp = make_google_blueprint(
+    client_id=os.getenv("GOOGLE_OAUTH_CLIENT_ID"),
+    client_secret=os.getenv("GOOGLE_OAUTH_CLIENT_SECRET"),
+    redirect_to="google_login",
+    scope=[
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "openid"
+    ]
+)
+
+
+app.register_blueprint(google_bp, url_prefix="/login")
+
+@app.route("/google")
+def google_login():
+    if not google.authorized:
+        return redirect(url_for("google.login"))
+    resp = google.get("/oauth2/v2/userinfo")
+    if not resp.ok:
+        return "Failed to fetch user info", 400
+    info = resp.json()
+    email = info.get("email")
+    username = info.get("name") or email.split("@")[0]
+
+    users = load_users()
+    user_id = None
+    for uid, data in users.items():
+        if data.get("email") == email:
+            user_id = uid
+            break
+
+    if user_id is None:
+        new_id = str(max(map(int, users.keys())) + 1) if users else "1"
+        users[new_id] = {
+            "username": username,
+            "name": username,
+            "surname": "",
+            "email": email,
+            "password": ""
+        }
+        save_users(users)
+        user_id = new_id
+
+    session.clear()
+    session["user_id"] = user_id
+    session["username"] = username
+    return redirect(url_for("home"))
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 _MODEL = "gpt-4o-mini"
 
-def search_trusted_sources(query):
+def search_trusted_sources(question, original_question):
     api_key = os.getenv("GOOGLE_CSE_API_KEY")
     engine_id = os.getenv("GOOGLE_CSE_ENGINE_ID")
     url = "https://www.googleapis.com/customsearch/v1"
-    params = {
-        "q": query,
-        "cx": engine_id,
-        "key": api_key,
-        "num": 3
-    }
-    try:
-        response = requests.get(url, params=params)
-        data = response.json()
-        items = data.get("items", [])
 
-        print("🔍 [Search Used] ✅")
-        print(f"🔑 Query: {query}")
-        for item in items:
-            print(f"- {item['title']} → {item['link']}")
+    queries = break_into_subqueries(question)
+    collected_text = ""
+    seen_links = set()
 
-        if not items:
-            return "Üzr istəyirik, uyğun rəsmi hüquqi mənbə tapılmadı. https://e-qanun.az saytında əl ilə axtarış edə bilərsiniz."
+    for subquery in queries:
+        params = {"q": subquery, "cx": engine_id, "key": api_key, "num": 2}
+        try:
+            response = requests.get(url, params=params)
+            data = response.json()
+            items = data.get("items", [])
+            print("🔍 Subquery:", subquery)
 
-        result = "Sualınıza uyğun ola biləcək rəsmi hüquqi mənbələr:\n\n"
-        for item in items:
-            result += f"- {item['title']}\n  {item['link']}\n\n"
-        return result.strip()
-    except Exception as e:
-        print("❌ Google Search Error:", e)
-        return "Axtarış zamanı xəta baş verdi. Zəhmət olmasa bir qədər sonra yenidən cəhd edin."
+            for item in items:
+                link = item.get("link")
+                if link and link not in seen_links:
+                    seen_links.add(link)
+                    snippet = fetch_legal_snippets(link)
+                    if snippet:
+                        collected_text += snippet + "\n"
+        except Exception as e:
+            print("❌ CSE Error for", subquery, str(e))
+
+    if not collected_text.strip():
+        return ("Üzr istəyirik, uyğun rəsmi hüquqi mənbə tapılmadı. "
+                "https://e-qanun.az saytında əl ilə axtarış edə bilərsiniz.\n"
+                "Əlavə olaraq, Mülki Məcəlləyə baxa bilərsiniz: https://e-qanun.az/framework/8")
+
+    explanation = explain_snippets(original_question, collected_text)
+    return explanation
+
 
 def load_users():
     if USERS_FILE.exists():
@@ -112,16 +169,39 @@ def save_message(user_id, chat_id, role, content):
 
 def list_user_chats(user_id):
     conversations = load_conversations()
-    return [
-        {"id": cid, "name": chat_data.get("name", cid)}
-        for cid, chat_data in conversations.get(str(user_id), {}).items()
-    ]
+    chat_dict = conversations.get(str(user_id), {})
+    chats = []
+
+    for cid, chat_data in chat_dict.items():
+        if isinstance(chat_data, list):
+            chats.append({"id": cid, "name": cid})  # fallback name
+        elif isinstance(chat_data, dict):
+            chats.append({"id": cid, "name": chat_data.get("name", cid)})
+        else:
+            chats.append({"id": cid, "name": cid})
+    
+    return chats
+
 
 def get_chat_messages(user_id, chat_id):
     conversations = load_conversations()
     return conversations.get(str(user_id), {}).get(chat_id, [])
 
 users = load_users()
+
+def break_into_subqueries(question):
+    chunks = []
+    if "yaş" in question or "uşaq" in question:
+        chunks.append("14 yaşında uşağın əməliyyat qabiliyyəti")
+    if "icazə" in question or "valideyn" in question:
+        chunks.append("valideyn icazəsi olmadan əqd")
+    if "telefon" in question or "pul" in question:
+        chunks.append("azyaşlının hədiyyə ilə telefon alması")
+    if "geri qaytarmaq" in question:
+        chunks.append("uşağın etdiyi əqdin ləğvi və geri qaytarılması")
+    if not chunks:
+        chunks.append(extract_keywords(question))
+    return chunks
 
 @app.route("/")
 def home():
@@ -210,14 +290,12 @@ def ask():
         print("🔤 Detected language:", language)
 
         if language == "az":
-            answer = search_trusted_sources(user_question)
+            simplified_query = extract_keywords(user_question)
+            print("🔎 Simplified Query:", simplified_query)
+            answer = search_trusted_sources(simplified_query, user_question)
         elif language in TRUSTED_SOURCES:
             source = TRUSTED_SOURCES[language]
-            answer = (
-                f"Bu hüquqi məsələ ilə bağlı dəqiq məlumat üçün rəsmi mənbəyə baxın: {source}"
-                if language == "az" else
-                f"Please consult the official legal source for accurate information: {source}"
-            )
+            answer = f"Please consult the official legal source: {source}"
         else:
             answer = "Sorry, I can only handle Azerbaijani, English, German, and Russian legal questions."
 
@@ -329,5 +407,65 @@ def validate_password(pw):
         any(c.isdigit() for c in pw)
     )
 
+def extract_keywords(text):
+    text = text.lower()
+    words = re.findall(r'\b\w{4,}\b', text)
+    blacklist = {"nədir", "olaraq", "buna", "üçün", "kimi", "belə", "amma", "çünki", "var"}
+    return " ".join(w for w in words if w not in blacklist)
+
+def fetch_legal_snippets(url):
+    try:
+        if "e-qanun.az" in url and "/framework/" in url:
+            return fetch_eqanun_framework(url)
+
+        response = requests.get(url, timeout=5)
+        soup = BeautifulSoup(response.content, "html.parser")
+        paragraphs = soup.find_all(["p", "div", "span"])
+        text = "\n".join(p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 40)
+        return text[:2000]
+
+    except Exception as e:
+        print("⚠️ Failed to extract from:", url, str(e))
+        return ""
+
+def explain_snippets(question, extracted_text):
+    messages = [
+        {"role": "system", "content": "You are a legal assistant. Only explain based on the provided Azerbaijani legal content. Do not invent facts."},
+        {"role": "user", "content": f"Sual: {question}\n\nMənbə:\n{extracted_text}"}
+    ]
+    try:
+        response = client.chat.completions.create(model=_MODEL, messages=messages)
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        print("❌ GPT Error:", e)
+        return "Cavab yaradılarkən xəta baş verdi."
+    
+def fetch_eqanun_framework(url):
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto(url, timeout=15000)
+            page.wait_for_timeout(3000)
+            html = page.content()
+            browser.close()
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        # This matches the current div seen in browser view
+        section = soup.find("div", id="zoomDocumentContainer")
+        if section:
+            text = section.get_text(separator=" ", strip=True)
+            print("✅ Extracted text length:", len(text))
+            return text[:2000]
+        else:
+            print("⚠️ 'zoomDocumentContainer' div not found")
+            return ""
+
+    except Exception as e:
+        print("❌ Playwright fetch error:", e)
+        return ""
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5050)
