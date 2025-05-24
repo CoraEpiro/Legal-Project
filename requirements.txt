@@ -3,3 +3,4 @@ gunicorn
 python-dotenv
 openai==1.82.0
 bcrypt==4.3.0
+langdetect==1.0.9

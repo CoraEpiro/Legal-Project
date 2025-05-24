@@ -5,9 +5,53 @@ from dotenv import load_dotenv
 import json
 from pathlib import Path
 import bcrypt
+from langdetect import detect
 
 USERS_FILE = Path("users.json")
 CONVO_FILE = Path("conversations.json")
+
+import requests
+
+def search_trusted_sources(query):
+    api_key = os.getenv("GOOGLE_CSE_API_KEY")
+    engine_id = os.getenv("GOOGLE_CSE_ENGINE_ID")
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        "q": query,
+        "cx": engine_id,
+        "key": api_key,
+        "num": 3
+    }
+
+    try:
+        response = requests.get(url, params=params)
+        data = response.json()
+        items = data.get("items", [])
+
+        print("🔍 [Search Used] ✅")
+        print(f"🔑 Query: {query}")
+        for item in items:
+            print(f"- {item['title']} → {item['link']}")
+
+        if not items:
+            return "Üzr istəyirik, uyğun rəsmi hüquqi mənbə tapılmadı. https://e-qanun.az saytında əl ilə axtarış edə bilərsiniz."
+        
+        result = "Sualınıza uyğun ola biləcək rəsmi hüquqi mənbələr:\n\n"
+        for item in items:
+            result += f"- {item['title']}\n  {item['link']}\n\n"
+        return result.strip()
+    except Exception as e:
+        print("❌ Google Search Error:", e)
+        return "Axtarış zamanı xəta baş verdi. Zəhmət olmasa bir qədər sonra yenidən cəhd edin."
+
+
+TRUSTED_SOURCES = {
+    "az": "https://e-qanun.az",
+    "en": "https://www.law.cornell.edu/",
+    "de": "https://www.gesetze-im-internet.de/",
+    "ru": "http://www.consultant.ru/"
+}
+
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = "secret123"
@@ -162,30 +206,34 @@ def ask():
 
     if not user_question:
         return jsonify({"error": "No question provided"}), 400
+    
+
 
     try:
-        print("🔍 Incoming /ask request")
-        print("🔑 OPENAI_API_KEY is:", os.getenv("OPENAI_API_KEY"))
+        if language == "az":
+            answer = search_trusted_sources(user_question)
+        else:
+            language = detect(user_question)
+            print("🔤 Detected language:", language)
 
-        response = client.chat.completions.create(
-            model=_MODEL,
-            messages=[
-                {"role": "system", "content": "You are a helpful legal advisor. Provide clear and general business law advice, not specific legal counsel."},
-                {"role": "user", "content": user_question}
-            ]
-        )
-        answer = response.choices[0].message.content
+            if language in TRUSTED_SOURCES:
+                source = TRUSTED_SOURCES[language]
+                answer = (
+                    f"Bu hüquqi məsələ ilə bağlı dəqiq məlumat üçün rəsmi mənbəyə baxın: {source}"
+                    if language == "az" else
+                    f"Please consult the official legal source for accurate information: {source}"
+                )
+            else:
+                answer = "Sorry, I can only handle Azerbaijani, English, German, and Russian legal questions."
 
         save_message(user_id, chat_id, "user", user_question)
         save_message(user_id, chat_id, "bot", answer)
-
         return jsonify({"answer": answer})
+
     except Exception as e:
         import traceback
-        traceback.print_exc()  # full stack trace
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
-
-
 
 
 @app.route("/login", methods=["GET", "POST"])
