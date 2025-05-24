@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Legal Advisor Chat</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="header-bar">
+    {% if user %}
+      <span>👤 Welcome, <strong>{{ user.username }}</strong></span>
+      <a href="/logout" onclick="localStorage.clear()">Logout</a>
+    {% else %}
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    {% endif %}
+  </div>
+
+  <div class="main-layout">
+    {% if user %}
+      <div class="sidebar">
+        <h3>Saved Chats</h3>
+        <div class="chat-list" id="chatList"></div>
+        <input type="text" id="chatName" placeholder="New chat name">
+        <button onclick="saveChat()">💾 Save Chat</button>
+        <button onclick="newChat()">➕ New Chat</button>
+      </div>
+
+      <div class="chat-container">
+        <div id="chatBox" class="chat-box">
+          {% for message in messages %}
+            <div class="chat-message {{ message.role }}">
+              {{ message.content }}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="footer">
+          <textarea id="question" placeholder="Type your legal question..."></textarea>
+          <button onclick="askQuestion()">Send</button>
+        </div>
+      </div>
+    {% else %}
+      <div style="text-align:center; padding:50px; font-size:18px;">
+        Please <a href="/login">log in</a> or <a href="/register">register</a> to start chatting.
+      </div>
+    {% endif %}
+  </div>
+
+  {% if user %}
+    <script src="/static/script.js"></script>
+  {% endif %}
+</body>
+</html>

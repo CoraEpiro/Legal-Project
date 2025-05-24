@@ -1,0 +1,32 @@
+{
+  "1": {
+    "chat_1748084455202": {
+      "name": "sdfsdf",
+      "messages": [
+        {
+          "role": "user",
+          "content": "sdfsdf"
+        },
+        {
+          "role": "bot",
+          "content": "It looks like your message might have been incomplete or entered in error. If you have a specific question or topic related to business law that you would like advice on, please feel free to share, and I\u2019ll be happy to help!"
+        }
+      ]
+    }
+  },
+  "3": {
+    "chat_1748084549432": {
+      "name": "456756756",
+      "messages": [
+        {
+          "role": "user",
+          "content": "nmm,nm,jnm,n"
+        },
+        {
+          "role": "bot",
+          "content": "It seems like your message might have been sent by mistake or is unclear. If you have a specific question or topic related to business law that you would like to discuss, please provide more details, and I'll be happy to help!"
+        }
+      ]
+    }
+  }
+}

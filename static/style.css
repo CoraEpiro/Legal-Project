@@ -1,0 +1,261 @@
+/* ---------- GLOBAL LAYOUT ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3f4f7;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-layout {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+/* ---------- HEADER BAR ---------- */
+.header-bar {
+  height: 60px;
+  background: #1a2340;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 15px;
+  color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-bar a {
+  color: #ffffff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.header-bar a:hover {
+  opacity: 0.8;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+  width: 270px;
+  background-color: #1f2a48;
+  color: white;
+  padding: 25px 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid #3c4769;
+  padding-bottom: 5px;
+}
+
+.sidebar input[type="text"] {
+  padding: 8px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+}
+
+.sidebar button {
+  padding: 10px;
+  background: #3a456a;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sidebar button:hover {
+  background-color: #4d5a84;
+}
+
+.chat-list button {
+  background-color: #2b3555;
+  text-align: left;
+}
+
+/* ---------- CHAT AREA ---------- */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background-color: #ffffff;
+  border-left: 1px solid #ddd;
+}
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background-color: #f8f9fb;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  max-width: 75%;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.user {
+  background-color: #d7e9ff;
+  align-self: flex-end;
+  border: 1px solid #b4d5ff;
+}
+
+.bot {
+  background-color: #fff5e0;
+  align-self: flex-start;
+  border: 1px solid #ffebc4;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.footer textarea {
+  flex: 1;
+  height: 60px;
+  resize: none;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.footer button {
+  flex-shrink: 0;
+  height: 60px;
+  padding: 0 24px;
+  font-size: 15px;
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.footer button:hover {
+  background-color: #1e2b3a;
+}
+
+/* ---------- FLASH + FORMS ---------- */
+.form-container {
+  max-width: 420px;
+  margin: 80px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow-wrap: break-word;
+  transition: all 0.3s ease-in-out;
+}
+
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: auto;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  background: #3c4a60;
+  color: white;
+  cursor: pointer;
+}
+
+.flash-container {
+  margin-bottom: 15px;
+}
+
+.flash {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.flash.error {
+  background-color: #ffdddd;
+  color: #a00;
+  border: 1px solid #eaa;
+}
+
+.flash.success {
+  background-color: #ddffdd;
+  color: #070;
+  border: 1px solid #8d8;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .footer textarea {
+    height: 50px;
+  }
+
+  .footer button {
+    height: 50px;
+  }
+}
+
+.form-container label.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin: 10px 0;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #374151; /* Dark gray */
+  cursor: pointer;
+}
