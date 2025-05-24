@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .error-message {
+      color: #b00020;
+      font-size: 13px;
+      margin-top: -6px;
+      margin-bottom: 10px;
+    }
+    .success-message {
+      color: green;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .indicator {
+      font-size: 12px;
+      margin-top: -6px;
+      margin-bottom: 10px;
+    }
+    .valid {
+      color: green;
+    }
+    .invalid {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Create Your Account</h2>
+    <div id="success" class="success-message"></div>
+    <form id="registerForm" onsubmit="return register(event)">
+      <input name="name" id="name" placeholder="First Name" required>
+      <div id="nameError" class="error-message"></div>
+
+      <input name="surname" id="surname" placeholder="Last Name" required>
+      <div id="surnameError" class="error-message"></div>
+
+      <input name="username" id="username" placeholder="Username" required>
+      <div id="usernameError" class="error-message"></div>
+
+      <input name="email" id="email" placeholder="Email" required>
+      <div id="emailError" class="error-message"></div>
+
+      <input name="password" type="password" id="password" placeholder="Password" required>
+      <div id="passwordError" class="error-message"></div>
+      <ul class="indicator">
+        <li id="length" class="invalid">✗ At least 8 characters</li>
+        <li id="upper" class="invalid">✗ One uppercase letter</li>
+        <li id="lower" class="invalid">✗ One lowercase letter</li>
+        <li id="number" class="invalid">✗ One number</li>
+      </ul>
+
+      <input name="repassword" type="password" id="repassword" placeholder="Repeat Password" required>
+      <div id="repasswordError" class="error-message"></div>
+
+      <button type="submit">Register</button>
+    </form>
+    <p style="text-align: center; margin-top: 10px;">Already registered? <a href="/login">Login</a></p>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <p>Or</p>
+      <a href="/google">
+        <button type="button" style="padding: 10px 20px;">Register with Google</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function updateIndicators() {
+      const val = document.getElementById("password").value;
+      document.getElementById("length").className = val.length >= 8 ? "valid" : "invalid";
+      document.getElementById("upper").className = /[A-Z]/.test(val) ? "valid" : "invalid";
+      document.getElementById("lower").className = /[a-z]/.test(val) ? "valid" : "invalid";
+      document.getElementById("number").className = /\d/.test(val) ? "valid" : "invalid";
+    }
+
+    document.getElementById("password").addEventListener("input", updateIndicators);
+
+    async function register(event) {
+      event.preventDefault();
+      document.querySelectorAll(".error-message").forEach(e => e.textContent = "");
+      document.getElementById("success").textContent = "";
+
+      const data = {
+        name: document.getElementById("name").value,
+        surname: document.getElementById("surname").value,
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        repassword: document.getElementById("repassword").value,
+      };
+
+      const res = await fetch("/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        window.location.href = json.redirect_url;
+      } else {
+        for (const field in json.errors) {
+          const el = document.getElementById(field + "Error");
+          if (el) el.textContent = json.errors[field];
+        }
+      }
+    }
+  </script>
+</body>
+</html>
