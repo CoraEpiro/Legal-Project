@@ -6,42 +6,50 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+
+  <!-- Header: always visible -->
   <div class="header-bar">
-    {% if user %}
-      <span>👤 Welcome, <strong>{{ user.username }}</strong></span>
-      <a href="/logout" onclick="localStorage.clear()">Logout</a>
-    {% else %}
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-    {% endif %}
+    <div class="header-content">
+      {% if user %}
+        <span>👤 Welcome, <strong>{{ user.username }}</strong></span>
+        <a href="/logout" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+      {% endif %}
+    </div>
   </div>
 
-  <div class="main-layout">
+  <!-- Wrapper for layout below header -->
+  <div class="page-wrapper">
     {% if user %}
-      <div class="sidebar">
-        <h3>Saved Chats</h3>
-        <div class="chat-list" id="chatList"></div>
-        <input type="text" id="chatName" placeholder="New chat name">
-        <button onclick="saveChat()">💾 Save Chat</button>
-        <button onclick="newChat()">➕ New Chat</button>
-      </div>
-
-      <div class="chat-container">
-        <div id="chatBox" class="chat-box">
-          {% for message in messages %}
-            <div class="chat-message {{ message.role }}">
-              {{ message.content }}
-            </div>
-          {% endfor %}
+      <div class="main-layout">
+        <div class="sidebar">
+          <h3>Saved Chats</h3>
+          <div class="chat-list" id="chatList"></div>
+          <input type="text" id="chatName" placeholder="New chat name">
+          <button onclick="saveChat()">💾 Save Chat</button>
+          <button onclick="newChat()">➕ New Chat</button>
         </div>
-        <div class="footer">
-          <textarea id="question" placeholder="Type your legal question..."></textarea>
-          <button onclick="askQuestion()">Send</button>
+
+        <div class="chat-container">
+          <div id="chatBox" class="chat-box">
+            {% for message in messages %}
+              <div class="chat-message {{ message.role }}">
+                {{ message.content }}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="footer">
+            <textarea id="question" placeholder="Type your legal question..."></textarea>
+            <button onclick="askQuestion()">Send</button>
+          </div>
         </div>
       </div>
     {% else %}
-      <div style="text-align:center; padding:50px; font-size:18px;">
-        Please <a href="/login">log in</a> or <a href="/register">register</a> to start chatting.
+      <div class="centered-auth-prompt">
+        <p>Please <a href="/login">log in</a> or <a href="/register">register</a> to start chatting.</p>
+        <div class="auth-buttons">
+          <a href="/login"><button>Login</button></a>
+          <a href="/register"><button>Register</button></a>
+        </div>
       </div>
     {% endif %}
   </div>
@@ -49,5 +57,6 @@
   {% if user %}
     <script src="/static/script.js"></script>
   {% endif %}
+
 </body>
 </html>

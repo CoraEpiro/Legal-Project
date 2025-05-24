@@ -56,16 +56,17 @@ async function loadChatList() {
 
     chatKeys.forEach(chat => {
       const wrapper = document.createElement("div");
-      wrapper.className = "chat-item";
+      wrapper.className = "chat-row";  // updated class
     
       const btn = document.createElement("button");
-      btn.textContent = chat.name;  // Use name instead of id
+      btn.textContent = chat.name;
+      btn.className = "chat-name-btn";
       btn.onclick = () => loadChatFromServer(chat.id);
     
       const del = document.createElement("span");
-      del.textContent = "🗑️";
+      del.innerHTML = "🗑️";
+      del.className = "trash-icon";
       del.title = "Delete";
-      del.className = "delete-btn";
       del.onclick = async () => {
         await fetch(`/api/delete_chat/${chat.id}`, { method: "DELETE" });
         loadChatList();
@@ -74,7 +75,7 @@ async function loadChatList() {
       wrapper.appendChild(btn);
       wrapper.appendChild(del);
       list.appendChild(wrapper);
-    });
+    });    
     
   } catch (err) {
     console.error("Failed to load chats", err);

@@ -88,3 +88,8 @@ def login():
     session["username"] = user_data["username"]
 
     return jsonify(success=True, redirect_url=url_for("home"))
+
+@auth_bp.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("auth.login"))
