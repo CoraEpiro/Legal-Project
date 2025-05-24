@@ -34,6 +34,22 @@
         {
           "role": "bot",
           "content": "Azerbaijan qanunvericiliyin\u0259 \u0259sas\u0259n, 14 ya\u015fl\u0131 Adil telefon al\u0131rsa, valideynl\u0259ri onun alm\u0131\u015f oldu\u011fu bu telefonu geri qaytara bil\u0259rl\u0259r. 14 ya\u015f\u0131nda olan u\u015faqlar h\u00fcquqi c\u0259h\u0259td\u0259n yetkin say\u0131lmad\u0131qlar\u0131 \u00fc\u00e7\u00fcn, onlar\u0131n imzalad\u0131qlar\u0131 m\u00fcqavil\u0259l\u0259r (m\u0259s\u0259l\u0259n, telefon al\u0131\u015f-veri\u015fi) valideynl\u0259rin v\u0259 ya q\u0259yyumlar\u0131n raz\u0131l\u0131\u011f\u0131 il\u0259 h\u0259yata ke\u00e7irilm\u0259lidir. Y\u0259ni valideynl\u0259r u\u015fa\u011f\u0131n etibar\u0131 \u00e7\u0259r\u00e7iv\u0259sind\u0259ki m\u00fcnasib\u0259tl\u0259ri t\u0259sdiql\u0259m\u0259k v\u0259 ya l\u0259\u011fv etm\u0259k h\u00fcququna malikdirl\u0259r. Bu s\u0259b\u0259bd\u0259n, valideynl\u0259r telefon al\u0131\u015f\u0131n\u0131 geri qaytarma h\u00fcququna malikdirl\u0259r."
+        },
+        {
+          "role": "user",
+          "content": "14 ya\u015f\u0131nda olan Adil telefon al\u0131r, valideyn geri qaytara bil\u0259rmi?"
+        },
+        {
+          "role": "bot",
+          "content": "Azerbaycan qanunvericiliyin\u0259 g\u00f6r\u0259, 14 ya\u015f\u0131nda u\u015faqlar m\u00fc\u0259yy\u0259n h\u00fcquqlara malikdirl\u0259r, lakin bu ya\u015fda olan \u015f\u0259xsl\u0259rin sat\u0131\u015f m\u00fcqavil\u0259l\u0259ri ba\u011flamaq qabiliyy\u0259ti m\u0259hdudla\u015f\u0131r. U\u015faqlar\u0131n yetkin ya\u015fa \u00e7atmad\u0131qlar\u0131 \u00fc\u00e7\u00fcn, valideynl\u0259rinin icaz\u0259si v\u0259 ya raz\u0131l\u0131\u011f\u0131 olmadan ba\u011flad\u0131qlar\u0131 m\u00fcqavil\u0259l\u0259r, \u00fcmumiyy\u0259tl\u0259, valideynl\u0259r t\u0259r\u0259find\u0259n l\u0259\u011fv oluna bil\u0259r. \n\nBu durumda, Adilin telefon almas\u0131 il\u0259 ba\u011fl\u0131 valideyninin raz\u0131l\u0131\u011f\u0131 olmadan h\u0259yata ke\u00e7irilmi\u015fs\u0259, valideyn telefonu geri qaytara bil\u0259r."
+        },
+        {
+          "role": "user",
+          "content": "Amnistiya aktlar\u0131n\u0131n siyah\u0131s\u0131n\u0131 tapa bil\u0259rs\u0259n?"
+        },
+        {
+          "role": "bot",
+          "content": "Veril\u0259n m\u0259nb\u0259d\u0259n amnistiya aktlar\u0131n\u0131n siyah\u0131s\u0131na dair h\u0259r hans\u0131 bir m\u0259lumat \u0259ld\u0259 etm\u0259k m\u00fcmk\u00fcn deyil. M\u0259nb\u0259 Milli M\u0259clisin strukturu v\u0259 funksiyalar\u0131 haqq\u0131nda m\u0259lumatlar\u0131 \u0259hat\u0259 edir, lakin amnistiya aktlar\u0131n\u0131n axtar\u0131\u015f\u0131 il\u0259 ba\u011fl\u0131 konkret bir siyah\u0131 t\u0259qdim etmir. Amnistiya aktlar\u0131 il\u0259 ba\u011fl\u0131 m\u0259lumat \u00fc\u00e7\u00fcn m\u00fcvafiq h\u00fcquqi resurslara v\u0259 ya Milli M\u0259clisin r\u0259smi sayt\u0131na m\u00fcraci\u0259t etm\u0259k daha m\u0259qs\u0259d\u0259uy\u011fundur."
         }
       ]
     },

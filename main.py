@@ -9,7 +9,6 @@ import bcrypt
 import json
 import os
 import re
-from playwright.sync_api import sync_playwright
 from flask_dance.contrib.google import make_google_blueprint, google
 
 def detect_language_fallback(text):
@@ -161,11 +160,25 @@ def save_message(user_id, chat_id, role, content):
     conversations = load_conversations()
     uid = str(user_id)
     cid = chat_id or "default"
-    conversations.setdefault(uid, {}).setdefault(cid, []).append({
-        "role": role,
-        "content": content
-    })
+
+    # Ensure proper structure
+    conversations.setdefault(uid, {})
+
+    # If chat exists and is a dict with 'messages', keep appending there
+    if cid in conversations[uid] and isinstance(conversations[uid][cid], dict):
+        conversations[uid][cid].setdefault("messages", []).append({
+            "role": role,
+            "content": content
+        })
+    else:
+        # fallback to legacy list format
+        conversations[uid].setdefault(cid, []).append({
+            "role": role,
+            "content": content
+        })
+
     save_conversations(conversations)
+
 
 def list_user_chats(user_id):
     conversations = load_conversations()
@@ -441,29 +454,44 @@ def explain_snippets(question, extracted_text):
         return "Cavab yaradılarkən xəta baş verdi."
     
 def fetch_eqanun_framework(url):
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/113.0.0.0 Safari/537.36"
+        )
+    }
+
     try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(url, timeout=15000)
-            page.wait_for_timeout(3000)
-            html = page.content()
-            browser.close()
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
 
-        soup = BeautifulSoup(html, "html.parser")
+        soup = BeautifulSoup(response.text, "html.parser")
 
-        # This matches the current div seen in browser view
-        section = soup.find("div", id="zoomDocumentContainer")
-        if section:
-            text = section.get_text(separator=" ", strip=True)
-            print("✅ Extracted text length:", len(text))
-            return text[:2000]
+        # Try various selectors that might contain the content
+        possible_ids = ["zoomDocumentContainer", "sectonText", "__next"]
+        for pid in possible_ids:
+            section = soup.find("div", id=pid)
+            if section and section.get_text(strip=True):
+                print(f"✅ Found content in div#{pid}")
+                return section.get_text(separator=" ", strip=True)[:2000]
+
+        # Fallback: Get all paragraphs with enough length
+        paragraphs = soup.find_all(["p", "div", "span"])
+        text_chunks = [
+            p.get_text(strip=True) for p in paragraphs if len(p.get_text(strip=True)) > 50
+        ]
+        final = "\n".join(text_chunks).strip()
+
+        if final:
+            print("✅ Fallback paragraph method worked.")
+            return final[:2000]
         else:
-            print("⚠️ 'zoomDocumentContainer' div not found")
+            print("❌ No usable text found on page.")
             return ""
 
     except Exception as e:
-        print("❌ Playwright fetch error:", e)
+        print("❌ Exception while fetching:", e)
         return ""
 
 
