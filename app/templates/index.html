@@ -33,10 +33,15 @@
           <div id="chatBox" class="chat-box">
             {% for message in messages %}
               <div class="chat-message {{ message.role }}">
-                {{ message.content }}
+                {% if message.role == "bot" %}
+                  {{ message.content|safe }}
+                {% else %}
+                  {{ message.content }}
+                {% endif %}
               </div>
             {% endfor %}
           </div>
+          <div id="scroll-anchor"></div>
           <div class="footer">
             <textarea id="question" placeholder="Type your legal question..."></textarea>
             <button onclick="askQuestion()">Send</button>
@@ -53,9 +58,8 @@
       </div>
     {% endif %}
   </div>
-
   {% if user %}
-    <script src="/static/script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   {% endif %}
 
 </body>

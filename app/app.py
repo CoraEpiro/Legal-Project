@@ -2,9 +2,9 @@ from flask import Flask, render_template, session, redirect, url_for, request, j
 from config import app, client, _MODEL
 from auth import google_login, google_bp, load_users
 from conversation import save_message, list_user_chats, load_conversations, load_users, save_conversations
-from legal_search import detect_language_fallback, search_trusted_sources
+from legal_search import detect_language_fallback, search_trusted_sources, is_legal_question
 from utils import TRUSTED_SOURCES
-from auth_routes import auth_bp  # adjust path as needed
+from auth_routes import auth_bp
 
 
 app.register_blueprint(google_bp, url_prefix="/login")
@@ -64,16 +64,52 @@ def ask():
     user_question = data["question"]
     chat_id = data.get("chat_id", "default")
     uid = session.get("user_id")
-    lang = detect_language_fallback(user_question)
-    if lang == "az":
-        answer = search_trusted_sources(user_question, user_question)
-    elif lang in TRUSTED_SOURCES:
-        answer = f"Please consult the official legal source: {TRUSTED_SOURCES[lang]}"
+    country = data.get("country")
+    lang = detect_language_fallback(user_question, country)
+
+    print(f"[DEBUG] lang={lang}, country={country}, text={user_question}")
+
+    if is_legal_question(user_question):
+        if lang != "az":
+            answer = "⚖️ Legal questions are currently only supported in Azerbaijani."
+        else:
+            try:
+                answer = search_trusted_sources(user_question, user_question)
+            except Exception as e:
+                answer = f"❌ Error retrieving legal information: {e}"
     else:
-        answer = "Sorry, only Azerbaijani, English, German, and Russian are supported."
+        answer = call_gpt_chat(user_question, lang=lang)
+
+
     save_message(uid, chat_id, "user", user_question)
     save_message(uid, chat_id, "bot", answer)
     return jsonify({"answer": answer})
+
+def call_gpt_chat(prompt, lang="az"):
+    strict_prompts = {
+        "az": "Cavabları yalnız azərbaycan dilində ver. Heç bir başqa dildən istifadə etmə.",
+        "en": "You must reply only in English. Do not use any other language.",
+        "de": "Nur auf Deutsch antworten.",
+        "ru": "Отвечай строго на русском языке."
+    }
+    system_message = strict_prompts.get(lang, f"Answer only in {lang}.")
+
+    print(f"[DEBUG] lang={lang}, prompt={prompt}")
+    print(f"[DEBUG] system_message={system_message}")
+
+    messages = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": f"(Language: {lang.upper()})\n{prompt}"}
+    ]
+
+    response = client.chat.completions.create(
+        model=_MODEL,
+        messages=messages,
+        temperature=0.7,
+    )
+
+    return response.choices[0].message.content.strip()
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050)

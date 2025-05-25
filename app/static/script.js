@@ -4,32 +4,61 @@ let currentChatId = "chat_" + Date.now();
 function addMessage(text, type) {
   const box = document.createElement('div');
   box.className = 'chat-message ' + type;
-  box.textContent = text;
-  document.getElementById('chatBox').appendChild(box);
-  document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
+  box.innerHTML = text;
+
+  const chatBox = document.getElementById('chatBox');
+  chatBox.appendChild(box);
+
+  let anchor = document.getElementById("scroll-anchor");
+  if (!anchor) {
+    anchor = document.createElement("div");
+    anchor.id = "scroll-anchor";
+    chatBox.appendChild(anchor);
+  } else {
+    chatBox.appendChild(anchor); // move to bottom
+  }
+
+  return box; // ✅ new
 }
 
-async function askQuestion() {
+
+window.askQuestion = async function () {
   const q = document.getElementById("question").value.trim();
   if (!q) return;
 
   addMessage(q, "user");
   currentMessages.push({ role: "user", content: q });
   document.getElementById("question").value = "";
+  setTimeout(() => scrollToBottom(), 20); // 👈 scroll immediately after user message
 
-  addMessage("Typing...", "bot");
+  const typingElement = addMessage("Typing...", "bot"); // ✅ save the DOM node
+
+  const country = localStorage.getItem("user_country") || null;
 
   const response = await fetch("/ask", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question: q, chat_id: currentChatId })
+    body: JSON.stringify({ question: q, chat_id: currentChatId, country: country })
   });
 
   const data = await response.json();
-  const lastBot = document.querySelector(".bot:last-child");
-  lastBot.textContent = data.answer;
+  typingElement.innerHTML = data.answer;
   currentMessages.push({ role: "bot", content: data.answer });
-}
+
+  setTimeout(() => scrollToBottom(), 50);
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const textarea = document.getElementById("question");
+
+  textarea.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault(); // prevent newline
+      askQuestion(); // call send
+    }
+  });
+  setTimeout(() => scrollToBottom(), 50);
+});
 
 async function saveChat() {
   const name = document.getElementById("chatName").value.trim();
@@ -90,7 +119,10 @@ async function loadChatFromServer(chatId) {
 
   const chatBox = document.getElementById("chatBox");
   chatBox.innerHTML = "";
-  currentMessages.forEach(msg => addMessage(msg.content, msg.role === "user" ? "user" : "bot"));
+  currentMessages.forEach(msg =>
+    addMessage(msg.content, msg.role === "user" ? "user" : "bot")
+  );
+  setTimeout(() => scrollToBottom(), 50);
 }  
 
 function loadChat(key) {
@@ -111,3 +143,18 @@ function newChat() {
 }
 
 loadChatList();
+
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => {
+    console.table(data);
+    localStorage.setItem("user_country", data.country); // e.g., "AZ"
+  })
+  .catch(err => console.error("Geo detection failed:", err));
+
+function scrollToBottom() {
+  const anchor = document.getElementById("scroll-anchor");
+  if (anchor) {
+    anchor.scrollIntoView({ behavior: "smooth" });
+  }
+}
