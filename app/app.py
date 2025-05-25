@@ -1,5 +1,5 @@
 from flask import Flask, render_template, session, redirect, url_for, request, jsonify
-from settings import app, client, _MODEL  # 🔁 changed from config
+from config import app, client, _MODEL  # 🔁 changed from config
 from auth import google_login, google_bp, load_users
 from conversation import save_message, list_user_chats, load_conversations, load_users, save_conversations
 from legal_search import detect_language_fallback, search_trusted_sources, is_legal_question
