@@ -99,7 +99,7 @@ def detect_language_fallback(text, country=None):
 
         return lang  # fallback to detected lang anyway
 
-    except LangDetectException:
+    except Exception as e:
         return "az" if country == "AZ" else "en"
 
 
