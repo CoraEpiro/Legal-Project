@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Legal Advisor Chat</title>
-  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
@@ -60,7 +59,7 @@
     {% endif %}
   </div>
   {% if user %}
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="/static/script.js"></script>
   {% endif %}
 
 </body>
