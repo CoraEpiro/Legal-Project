@@ -1,6 +1,6 @@
 import requests, re, os
 from bs4 import BeautifulSoup
-from config import client, _MODEL
+from settings import client, _MODEL
 from utils import extract_keywords
 import fitz  # PyMuPDF
 from io import BytesIO
