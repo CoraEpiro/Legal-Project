@@ -1,11 +1,10 @@
 from flask import Flask, render_template, session, redirect, url_for, request, jsonify
-from config import app, client, _MODEL
+from settings import app, client, _MODEL  # 🔁 changed from config
 from auth import google_login, google_bp, load_users
 from conversation import save_message, list_user_chats, load_conversations, load_users, save_conversations
 from legal_search import detect_language_fallback, search_trusted_sources, is_legal_question
 from utils import TRUSTED_SOURCES
 from auth_routes import auth_bp
-
 
 app.register_blueprint(google_bp, url_prefix="/login")
 app.register_blueprint(auth_bp)
@@ -80,7 +79,6 @@ def ask():
     else:
         answer = call_gpt_chat(user_question, lang=lang)
 
-
     save_message(uid, chat_id, "user", user_question)
     save_message(uid, chat_id, "bot", answer)
     print(f"[LOG] Responded to question from user {uid} in chat {chat_id}")
@@ -110,7 +108,6 @@ def call_gpt_chat(prompt, lang="az"):
     )
 
     return response.choices[0].message.content.strip()
-
 
 if __name__ == "__main__":
     app.run(debug=True, port=5050)
