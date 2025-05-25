@@ -18,7 +18,7 @@ function addMessage(text, type) {
     chatBox.appendChild(anchor); // move to bottom
   }
 
-  return box; // ✅ new
+  return box;
 }
 
 
