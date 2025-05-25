@@ -83,6 +83,7 @@ def ask():
 
     save_message(uid, chat_id, "user", user_question)
     save_message(uid, chat_id, "bot", answer)
+    print(f"[LOG] Responded to question from user {uid} in chat {chat_id}")
     return jsonify({"answer": answer})
 
 def call_gpt_chat(prompt, lang="az"):
