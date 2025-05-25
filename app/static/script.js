@@ -29,21 +29,27 @@ window.askQuestion = async function () {
   addMessage(q, "user");
   currentMessages.push({ role: "user", content: q });
   document.getElementById("question").value = "";
-  setTimeout(() => scrollToBottom(), 20); // 👈 scroll immediately after user message
+  setTimeout(() => scrollToBottom(), 20);
 
-  const typingElement = addMessage("Typing...", "bot"); // ✅ save the DOM node
+  const typingElement = addMessage("Typing...", "bot");
 
   const country = localStorage.getItem("user_country") || null;
 
-  const response = await fetch("/ask", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question: q, chat_id: currentChatId, country: country })
-  });
+  try {
+    const response = await fetch("/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: q, chat_id: currentChatId, country })
+    });
 
-  const data = await response.json();
-  typingElement.innerHTML = data.answer;
-  currentMessages.push({ role: "bot", content: data.answer });
+    const data = await response.json();
+    const reply = data.answer || "❌ No answer received.";
+    typingElement.innerHTML = reply;
+    currentMessages.push({ role: "bot", content: reply });
+  } catch (err) {
+    console.error("Error while asking question:", err);
+    typingElement.innerHTML = "❌ Failed to get a response.";
+  }
 
   setTimeout(() => scrollToBottom(), 50);
 };

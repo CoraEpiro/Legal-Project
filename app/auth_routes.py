@@ -62,13 +62,14 @@ def register():
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
-    if request.content_type != "application/json":
-        return jsonify(success=False, errors={"form": "Invalid request format"})
-    
     if request.method == "GET":
         return render_template("login.html")
 
-    data = request.get_json()
+    try:
+        data = request.get_json(force=True)
+    except Exception as e:
+        return jsonify(success=False, errors={"form": "Invalid request format"})
+
     email = data.get("email", "").strip()
     password = data.get("password", "")
 

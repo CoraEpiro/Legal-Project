@@ -38,11 +38,11 @@
     <div class="form-container">
       <h2>Login</h2>
       <form id="loginForm" onsubmit="return login(event)">
-        <input name="email" id="loginEmail" placeholder="Email" required>
+        <input type="email" name="email" id="loginEmail" placeholder="Email" required>
         <div id="emailError" class="error-message"></div>
 
         <div class="toggle-pw">
-          <input name="password" type="password" id="loginPassword" placeholder="Password" required>
+          <input type="password" name="password" id="loginPassword" placeholder="Password" required>
           <span class="eye" onclick="togglePassword(this, 'loginPassword')">👁️</span>
         </div>
         <div id="passwordError" class="error-message"></div>
@@ -56,11 +56,11 @@
       <p style="text-align: center; margin-top: 10px;">Don’t have an account? <a href="/register">Register here</a></p>
     
       <div style="text-align: center; margin-top: 20px;">
-      <p>Or</p>
-      <a href="/google">
-        <button type="button" class="google-button">Sign in with Google</button>
-      </a>      
-    </div> 
+        <p>Or</p>
+        <a href="/google">
+          <button type="button" class="google-button">Sign in with Google</button>
+        </a>      
+      </div> 
     </div>
   </div>
   
@@ -69,10 +69,10 @@
       const field = document.getElementById(id);
       if (field.type === "password") {
         field.type = "text";
-        el.textContent = "🙈"; // 🙈
+        el.textContent = "🙈";
       } else {
         field.type = "password";
-        el.textContent = "👁️"; // 👁️
+        el.textContent = "👁️";
       }
     }
 
@@ -88,25 +88,29 @@
         remember: document.getElementById("rememberMe").checked
       };
 
-      const res = await fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest"
-      },
-      body: JSON.stringify(data)
-    });
+      try {
+        const res = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+          },
+          body: JSON.stringify(data)
+        });
 
+        const json = await res.json();
 
-      const json = await res.json();
-
-      if (json.success) {
-        window.location.href = json.redirect_url;
-      } else {
-        for (const field in json.errors) {
-          const el = document.getElementById(field + "Error");
-          if (el) el.textContent = json.errors[field];
+        if (json.success) {
+          window.location.href = json.redirect_url;
+        } else {
+          for (const field in json.errors) {
+            const el = document.getElementById(field + "Error");
+            if (el) el.textContent = json.errors[field];
+          }
         }
+      } catch (error) {
+        alert("⚠️ Server error. Please try again later.");
+        console.error("Login error:", error);
       }
     }
   </script>
