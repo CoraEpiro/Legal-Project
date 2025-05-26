@@ -7,11 +7,17 @@ google_bp = make_google_blueprint(
     client_id=os.getenv("GOOGLE_OAUTH_CLIENT_ID"),
     client_secret=os.getenv("GOOGLE_OAUTH_CLIENT_SECRET"),
     redirect_to="login_google",
-    scope=["profile", "email", "openid"]
+    scope=[
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "openid"
+    ]
 )
+
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 def google_login():
+    print(google_bp.redirect_url)  # Add this temporarily in your code
     if not google.authorized:
         return redirect(url_for("google.login"))
     info = google.get("/oauth2/v2/userinfo").json()

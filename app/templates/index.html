@@ -16,6 +16,7 @@
       {% endif %}
     </div>
   </div>
+  
 
   <!-- Wrapper for layout below header -->
   <div class="page-wrapper">
@@ -31,6 +32,7 @@
 
         <div class="chat-container">
           <div id="chatBox" class="chat-box">
+            <img src="/static/logo.png" class="chat-logo-placeholder" id="chatLogo" />
             {% for message in messages %}
               <div class="chat-message {{ message.role }}">
                 {% if message.role == "bot" %}
@@ -40,7 +42,7 @@
                 {% endif %}
               </div>
             {% endfor %}
-          </div>
+          </div>                  
           <div id="scroll-anchor"></div>
           <div class="footer">
             <textarea id="question" placeholder="Type your legal question..."></textarea>

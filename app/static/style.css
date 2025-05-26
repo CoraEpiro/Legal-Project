@@ -517,3 +517,30 @@ button {
 .legal-sources a:hover {
   text-decoration: underline;
 }
+
+.logo {
+  height: 32px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.chat-logo-placeholder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 450px;
+  width: 60%;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.chat-box {
+  position: relative;  /* ✅ This is required for absolute centering to work */
+}
+
+.chat-box.has-content .chat-logo-placeholder {
+  opacity: 0.07;
+}

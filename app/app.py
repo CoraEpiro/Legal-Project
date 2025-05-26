@@ -8,6 +8,11 @@ from auth_routes import auth_bp
 
 app.register_blueprint(google_bp, url_prefix="/login")
 app.register_blueprint(auth_bp)
+from flask import url_for
+
+@app.route("/debug-redirect")
+def debug_redirect():
+    return url_for("google.authorized", _external=True)
 
 @app.route("/")
 def home():

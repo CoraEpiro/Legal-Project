@@ -1,0 +1,32 @@
+{
+  "1": {
+    "chat_1748285966557": [
+      {
+        "role": "user",
+        "content": "hey"
+      },
+      {
+        "role": "bot",
+        "content": "Hello! How can I assist you today?"
+      },
+      {
+        "role": "user",
+        "content": "salam"
+      },
+      {
+        "role": "bot",
+        "content": "Salam! Siz\u0259 nec\u0259 k\u00f6m\u0259k ed\u0259 bil\u0259r\u0259m?"
+      }
+    ],
+    "chat_1748286127126": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "bot",
+        "content": "Hello! How can I assist you today?"
+      }
+    ]
+  }
+}
