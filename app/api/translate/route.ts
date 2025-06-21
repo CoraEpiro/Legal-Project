@@ -3,6 +3,9 @@ import { verify } from 'jsonwebtoken';
 import type { JwtPayload } from 'jsonwebtoken';
 import { translateText } from '@/lib/legal-search';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'a-default-secret-for-development';
 
 export async function POST(request: NextRequest) {

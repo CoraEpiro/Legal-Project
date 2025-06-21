@@ -3,6 +3,9 @@ import { readUsers, writeUsers, User, isValidEmail, isValidPassword, isValidUser
 import bcrypt from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'a-default-secret-for-development';
 
 export async function POST(request: NextRequest) {

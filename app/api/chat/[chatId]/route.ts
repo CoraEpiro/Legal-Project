@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getChat, addMessageToChat, deleteChat, renameChat } from '../../../../lib/chat-store';
 import { verify } from 'jsonwebtoken';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'a-default-secret-for-development';
 
 interface JwtPayload {

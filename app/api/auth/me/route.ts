@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readUsers, User } from '../../../../lib/user-store';
 import { verify } from 'jsonwebtoken';
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'a-default-secret-for-development';
 
 interface JwtPayload {
