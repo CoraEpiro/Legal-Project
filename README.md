@@ -278,4 +278,81 @@ If you encounter any issues or have questions:
 
 ---
 
-**Note**: This application is designed for educational and informational purposes. It should not be considered as legal advice. Users should consult with qualified legal professionals for specific legal matters. 
+**Note**: This application is designed for educational and informational purposes. It should not be considered as legal advice. Users should consult with qualified legal professionals for specific legal matters.
+
+## Environment Variables
+
+For the application to work properly, you need to set up the following environment variables:
+
+### Required Variables
+
+Create a `.env.local` file in the root directory with:
+
+```bash
+# NextAuth Secret - CRITICAL for JWT token signing
+NEXTAUTH_SECRET=your-super-secret-jwt-key-change-this-in-production
+
+# OpenAI API Configuration
+OPENAI_API_KEY=your-openai-api-key-here
+
+# Google Custom Search Configuration (optional, for enhanced legal search)
+GOOGLE_API_KEY=your-google-api-key-here
+GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id-here
+
+# Environment
+NODE_ENV=development
+```
+
+### Vercel Deployment
+
+When deploying to Vercel, make sure to add these environment variables in your Vercel dashboard:
+
+1. Go to your Vercel project dashboard
+2. Navigate to Settings → Environment Variables
+3. Add each variable from above
+4. **IMPORTANT**: Generate a strong `NEXTAUTH_SECRET` for production
+
+### Generating NEXTAUTH_SECRET
+
+You can generate a secure secret using:
+
+```bash
+openssl rand -base64 32
+```
+
+Or use any random string generator with at least 32 characters.
+
+## Quick Start
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables (see above)
+4. Run development server: `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000)
+
+## Technical Notes
+
+- **Storage**: Uses file-based storage in development, in-memory storage in serverless environments (Vercel)
+- **Authentication**: JWT tokens stored in HTTP-only cookies
+- **AI Integration**: OpenAI GPT for intelligent responses and translation
+- **Responsive Design**: Tailwind CSS with mobile-first approach
+
+## Deployment
+
+The application is configured for Vercel deployment with:
+- Automatic builds on git push
+- Serverless function optimization
+- Environment variable support
+- Static asset optimization
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details. 
