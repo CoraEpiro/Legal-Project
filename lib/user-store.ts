@@ -1,8 +1,14 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-// Define the path to the users.json file
+// Check if we're running in a serverless environment (Vercel)
+const isServerless = process.env.VERCEL || !process.env.NODE_ENV || process.env.NODE_ENV === 'production';
+
+// Define the path to the users.json file (only used in local development)
 const usersFilePath = path.join(process.cwd(), 'users.json');
+
+// In-memory storage for serverless environments
+let memoryUsers: UserData = {};
 
 // Define the User type
 export interface User {
@@ -17,9 +23,14 @@ export interface User {
 type UserData = Record<string, Omit<User, 'id'> & { password?: string }>;
 
 /**
- * Reads and parses the users.json file.
+ * Reads and parses the users data.
  */
 export async function readUsers(): Promise<UserData> {
+  if (isServerless) {
+    // Use in-memory storage for serverless environments
+    return memoryUsers;
+  }
+  
   try {
     const data = await fs.readFile(usersFilePath, 'utf-8');
     return JSON.parse(data);
@@ -35,9 +46,15 @@ export async function readUsers(): Promise<UserData> {
 }
 
 /**
- * Writes data to the users.json file.
+ * Writes data to the users storage.
  */
 export async function writeUsers(data: UserData): Promise<void> {
+  if (isServerless) {
+    // Use in-memory storage for serverless environments
+    memoryUsers = { ...data };
+    return;
+  }
+  
   try {
     // Ensure the directory exists
     const dir = path.dirname(usersFilePath);

@@ -1,8 +1,14 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-// Define the path to the conversations.json file
+// Check if we're running in a serverless environment (Vercel)
+const isServerless = process.env.VERCEL || !process.env.NODE_ENV || process.env.NODE_ENV === 'production';
+
+// Define the path to the conversations.json file (only used in local development)
 const conversationsFilePath = path.join(process.cwd(), 'conversations.json');
+
+// In-memory storage for serverless environments
+let memoryConversations: ConversationsData = {};
 
 // Define the Chat and Message types
 export interface Message {
@@ -26,9 +32,14 @@ export interface Chat {
 type ConversationsData = Record<string, Chat>;
 
 /**
- * Reads and parses the conversations.json file.
+ * Reads and parses the conversations data.
  */
 export async function readConversations(): Promise<ConversationsData> {
+  if (isServerless) {
+    // Use in-memory storage for serverless environments
+    return memoryConversations;
+  }
+  
   try {
     const data = await fs.readFile(conversationsFilePath, 'utf-8');
     return JSON.parse(data);
@@ -44,9 +55,15 @@ export async function readConversations(): Promise<ConversationsData> {
 }
 
 /**
- * Writes data to the conversations.json file.
+ * Writes data to the conversations storage.
  */
 export async function writeConversations(data: ConversationsData): Promise<void> {
+  if (isServerless) {
+    // Use in-memory storage for serverless environments
+    memoryConversations = { ...data };
+    return;
+  }
+  
   try {
     // Ensure the directory exists
     const dir = path.dirname(conversationsFilePath);
