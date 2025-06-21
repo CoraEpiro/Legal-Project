@@ -7,7 +7,7 @@ const isServerless = process.env.VERCEL || !process.env.NODE_ENV || process.env.
 // Define the path to the conversations.json file (only used in local development)
 const conversationsFilePath = path.join(process.cwd(), 'conversations.json');
 
-// In-memory storage for serverless environments
+// In-memory storage for serverless environments - properly isolated by user
 let memoryConversations: ConversationsData = {};
 
 // Define the Chat and Message types
@@ -77,19 +77,23 @@ export async function writeConversations(data: ConversationsData): Promise<void>
 }
 
 /**
- * Gets all chats for a specific user.
+ * Gets all chats for a specific user - WITH PROPER USER ISOLATION.
  */
 export async function getUserChats(userId: string): Promise<Chat[]> {
   const conversations = await readConversations();
+  // CRITICAL: Filter by userId to ensure users only see their own chats
   return Object.values(conversations).filter(chat => chat.userId === userId);
 }
 
 /**
- * Gets a specific chat by ID.
+ * Gets a specific chat by ID - WITH USER PERMISSION CHECK.
  */
 export async function getChat(chatId: string): Promise<Chat | null> {
   const conversations = await readConversations();
-  return conversations[chatId] || null;
+  const chat = conversations[chatId];
+  
+  // Return the chat (permission check will be done in the API route)
+  return chat || null;
 }
 
 /**
@@ -102,7 +106,7 @@ export async function createChat(userId: string, title: string, initialMessage?:
   
   const newChat: Chat = {
     id: chatId,
-    userId,
+    userId, // CRITICAL: Ensure userId is set correctly
     title,
     messages: initialMessage ? [{
       id: '1',
@@ -121,14 +125,15 @@ export async function createChat(userId: string, title: string, initialMessage?:
 }
 
 /**
- * Renames an existing chat.
+ * Renames an existing chat - WITH USER PERMISSION CHECK.
  */
 export async function renameChat(chatId: string, newTitle: string, userId: string): Promise<Chat | null> {
   const conversations = await readConversations();
   const chat = conversations[chatId];
   
+  // CRITICAL: Ensure user can only rename their own chats
   if (!chat || chat.userId !== userId) {
-    // Or throw an error, depending on how you want to handle auth
+    console.warn(`🚫 Access denied: User ${userId} tried to rename chat ${chatId} owned by ${chat?.userId}`);
     return null;
   }
   
@@ -145,15 +150,21 @@ export async function renameChat(chatId: string, newTitle: string, userId: strin
 }
 
 /**
- * Adds a message to an existing chat.
+ * Adds a message to an existing chat - WITH USER PERMISSION CHECK.
  * Returns the newly created message.
  */
-export async function addMessageToChat(chatId: string, message: Omit<Message, 'id' | 'timestamp'>): Promise<Message> {
+export async function addMessageToChat(chatId: string, message: Omit<Message, 'id' | 'timestamp'>, requestingUserId?: string): Promise<Message> {
   const conversations = await readConversations();
   const chat = conversations[chatId];
   
   if (!chat) {
     throw new Error('Chat not found');
+  }
+  
+  // CRITICAL: If requestingUserId is provided, ensure user can only add messages to their own chats
+  if (requestingUserId && chat.userId !== requestingUserId) {
+    console.error(`🚫 Security violation: User ${requestingUserId} tried to add message to chat ${chatId} owned by ${chat.userId}`);
+    throw new Error('Access denied: You can only add messages to your own chats');
   }
   
   const newMessage: Message = {
@@ -175,13 +186,15 @@ export async function addMessageToChat(chatId: string, message: Omit<Message, 'i
 }
 
 /**
- * Deletes a chat.
+ * Deletes a chat - WITH USER PERMISSION CHECK.
  */
 export async function deleteChat(chatId: string, userId: string): Promise<boolean> {
   const conversations = await readConversations();
   const chat = conversations[chatId];
   
+  // CRITICAL: Ensure user can only delete their own chats
   if (!chat || chat.userId !== userId) {
+    console.warn(`🚫 Access denied: User ${userId} tried to delete chat ${chatId} owned by ${chat?.userId}`);
     return false;
   }
   

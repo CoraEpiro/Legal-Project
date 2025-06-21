@@ -45,11 +45,18 @@ export async function POST(request: NextRequest) {
     }
     
     // Save the user's message first to ensure it's in the history for the AI
-    await addMessageToChat(chatId, { role: 'user', content: question });
+    await addMessageToChat(chatId, { role: 'user', content: question }, userId);
     console.log(`💬 User message saved to chat ${chatId}`);
 
     // Now get the full chat history, which includes the new user message
     const fullChat = await getChat(chatId);
+    
+    // CRITICAL: Verify user owns this chat before proceeding
+    if (fullChat && fullChat.userId !== userId) {
+      console.error(`🚫 Security violation: User ${userId} tried to access chat ${chatId} owned by ${fullChat.userId}`);
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+    
     const history = fullChat ? fullChat.messages.map(m => ({ role: m.role, content: m.content })) : [];
     
     // Call the new generateAnswer function with history
@@ -62,7 +69,7 @@ export async function POST(request: NextRequest) {
       content: aiResponseContent,
       originalLanguage: 'az',
       displayLanguage: language || 'az'
-    });
+    }, userId);
     console.log(`💬 Original assistant message saved to chat ${chatId}`);
 
     // If English is requested, translate for display, but don't save the translation to history.

@@ -7,7 +7,7 @@ const isServerless = process.env.VERCEL || !process.env.NODE_ENV || process.env.
 // Define the path to the users.json file (only used in local development)
 const usersFilePath = path.join(process.cwd(), 'users.json');
 
-// In-memory storage for serverless environments
+// In-memory storage for serverless environments - users are isolated by authentication
 let memoryUsers: UserData = {};
 
 // Define the User type
@@ -24,6 +24,7 @@ type UserData = Record<string, Omit<User, 'id'> & { password?: string }>;
 
 /**
  * Reads and parses the users data.
+ * NOTE: User isolation is handled at the authentication level (JWT tokens)
  */
 export async function readUsers(): Promise<UserData> {
   if (isServerless) {

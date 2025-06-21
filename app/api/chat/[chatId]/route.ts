@@ -143,7 +143,19 @@ export async function POST(
       );
     }
 
-    const updatedChat = await addMessageToChat(chatId, { role, content });
+    // Get the chat first to verify ownership
+    const chat = await getChat(chatId);
+    if (!chat) {
+      return NextResponse.json({ error: 'Chat not found' }, { status: 404 });
+    }
+    
+    // CRITICAL: Verify user owns this chat
+    if (chat.userId !== userId) {
+      console.error(`🚫 Security violation: User ${userId} tried to add message to chat ${chatId} owned by ${chat.userId}`);
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+
+    const updatedChat = await addMessageToChat(chatId, { role, content }, userId);
     console.log('✅ Message added to chat:', chatId);
     
     return NextResponse.json(updatedChat, { status: 200 });
