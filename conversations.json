@@ -15,7 +15,7 @@
       },
       {
         "role": "bot",
-        "content": "Salam! Siz\u0259 nec\u0259 k\u00f6m\u0259k ed\u0259 bil\u0259r\u0259m?"
+        "content": "Salam! Sizə necə kömək edə bilərəm?"
       }
     ],
     "chat_1748286127126": [
@@ -27,6 +27,565 @@
         "role": "bot",
         "content": "Hello! How can I assist you today?"
       }
+    ],
+    "chat_1748294643284": [
+      {
+        "role": "user",
+        "content": "Mülki məcəllənin 21-ci maddəsinin şərhini ver"
+      },
+      {
+        "role": "bot",
+        "content": "<div class='legal-answer'>Mülki məcəllənin 21-ci maddəsi, Azərbaycan Respublikasının mülki qanunvericiliyində şəxslərin hüquqi statusunu və mülkiyyət hüquqlarını tənzimləyən əsas prinsipləri müəyyən edən bir məaddədir.<br>Bu maddədə, hüquqi şəxslərin və fiziki şəxslərin hüquqi şəxsiyyətinin tanınması, hüquqlarının istifadəsi, mülkiyyətin qorunması və mülkiyyət hüququnun həyata keçirilməsi məsələləri əhatə edilir.<br>Maddənin şərhinə gəldikdə, buradakı əsas prinsiplərdən biri, mülkiyyət hüququnun pozulmazlığıdır.<br>Yəni, hər bir şəxsin mülkiyyət hüququ qanunla müdafiə olunur və bu hüquqların pozulması halları müvafiq hüquqi məhkəmə və təşkilatlar vasitəsilə həll edilə bilər.<br>Bundan başqa, maddədə mülkiyyət hüququnun istifadəsi və onun məsuliyyətinin tənzimlənməsi də müzakirə olunur.<br>Bu, mülkiyyət sahiblərinin öz mülklərini necə istifadə edə biləcəyini və bu prosesdə hansı hüquqi çərçivələrə riayət etməli olduqlarını əhatə edir.<br>Ümumiyyətlə, Mülki Məcəllənin 21-ci maddəsi, hüquqi şəxslərin və fiziki şəxslərin mülkiyyət hüquqlarının qorunması və tənzimlənməsi məsələlərini əhatə edən mühüm bir hüquqi bazadır.<br>Bu maddənin düzgün başa düşülməsi, şəxslərin mülkiyyət hüquqlarını qorumaq və onlardan istifadə etmək baxımından böyük əhəmiyyət kəsb edir.</div><br><br><div class='legal-sources'><strong>Sources:</strong><ul></ul></div>"
+      },
+      {
+        "role": "user",
+        "content": "Mülki məcəllənin 21-ci maddəsinin şərhini ver"
+      },
+      {
+        "role": "bot",
+        "content": "<div class='legal-answer'>Təəssüf ki, qeyd etdiyiniz \"Mülki məcəllənin 21-ci maddəsi\"nin şərhini hazırlamaq üçün mənə həmin maddənin məzmunu təqdim olunmayıb.<br>Zəhmət olmasa, bu maddənin tam mətnini və ya aid olduğu hüquqi sənədin məzmununu təqdim edin və mən dərhal sizə onun şərhini verim.</div><br><br><div class='legal-sources'><strong>Sources:</strong><ul></ul></div>"
+      }
     ]
+  },
+  "1750502032629": {
+    "id": "1750502032629",
+    "userId": "1",
+    "title": "asd545",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Salam",
+        "id": "1",
+        "timestamp": "2025-06-21T10:33:56.681Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\nSalam! Bu gün sizin üçün nə ilə kömək edə bilərəm? Hər hansı bir hüquqi sualınız varsa, məmnuniyyətlə cavablandıraram.  \n</div></div>",
+        "id": "2",
+        "timestamp": "2025-06-21T10:33:58.402Z"
+      },
+      {
+        "role": "user",
+        "content": "Menim bir emlak isi var",
+        "id": "3",
+        "timestamp": "2025-06-21T10:34:05.562Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"vague-inquiry\"><div class=\"vague-inquiry\">\nEmlak işi ilə bağlı daha çox məlumat verə bilərsinizmi? Məsələn:\n- Hansı növ əmlak məsələsidir? (alış-satış, kirayə, mülkiyyət davası və s.)\n- Hadisə nə vaxt baş verib?\n- Hər hansı digər şəxslər və ya tərəflər iştirak edirmi?\n- Hansı sənədlər var və ya təqdim edilibmi?\n\nBu məlumatlar əsasında sizə daha yaxşı kömək edə bilərəm.\n</div></div>",
+        "id": "4",
+        "timestamp": "2025-06-21T10:34:08.016Z"
+      },
+      {
+        "role": "user",
+        "content": "Hmm what is integral of e power x",
+        "id": "5",
+        "timestamp": "2025-06-21T10:34:32.896Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\nİnteqral hesabı ilə maraqlıdır, eləmi? <strong>e^x</strong> funksiyasının inteqralı çox sadədir. <strong>e^x</strong>-in inteqralı özünə bərabərdir, yəni:\n\n∫ e^x dx = e^x + C\n\nBurada, C isə inteqralın dəyişən sabitini ifadə edir. Daha çox sualınız varsa, çəkinmədən soruşun!\n</div></div>",
+        "id": "6",
+        "timestamp": "2025-06-21T10:34:35.410Z"
+      },
+      {
+        "role": "user",
+        "content": "what is integral of e power x minus i",
+        "id": "7",
+        "timestamp": "2025-06-21T10:36:13.071Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><div class=\"casual-answer\">\nTamam, nəzərdən keçirək. Əgər siz <strong>e^x - i</strong> funksiyasının inteqralını axtarırsınızsa, onda bunu ayrı-ayrılıqda işləmək lazımdır:\n\n∫ (e^x - i) dx = ∫ e^x dx - ∫ i dx\n\n- ∫ e^x dx = e^x\n- ∫ i dx = i*x \n\nNəticə isə: e^x - i*x + C\n\nBuradakı C isə inteqralın sabitidir. Beləliklə, ∫ (e^x - i) dx = e^x - i*x + C. Daha çox köməkçi suallar üçün buradayam!\n</div></div></div>",
+        "id": "8",
+        "timestamp": "2025-06-21T10:36:17.984Z"
+      },
+      {
+        "role": "user",
+        "content": "great",
+        "id": "9",
+        "timestamp": "2025-06-21T10:36:34.271Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">Məmnunam ki, kömək edə bildim! Başqa bir sualınız varsa, çəkinmədən verin. Hüquqi və ya başqa sahələrdə kömək etməyə hazıram!</div></div>",
+        "id": "10",
+        "timestamp": "2025-06-21T10:36:36.733Z"
+      },
+      {
+        "role": "user",
+        "content": "what about our asset problem",
+        "id": "11",
+        "timestamp": "2025-06-21T10:36:45.110Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"vague-inquiry\"><div class=\"vague-inquiry\">\nƏmlak mövzusunda bir problem olduğundan bəhs edirsiniz. Daha dəqiq şəkildə kömək etmək üçün bəzi detallara ehtiyacım olacaq. Məsələn:\n\n- Hansı növ əmlak məsələsidir? (Satınalma, icarə, mübahisə və s.)\n- Nə vaxt baş verib?\n- Kimlər iştirak edib və ya prosesə kimlər daxildir?\n- Hər hansı sənəd və ya müqavilə varmı?\n\nBu cür məlumatlar kömək etməyim üçün vacibdir. Ətraflı məlumat verə bilərsinizmi?\n</div></div>",
+        "id": "12",
+        "timestamp": "2025-06-21T10:36:48.124Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e",
+        "id": "13",
+        "timestamp": "2025-06-21T10:38:17.186Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"casual-answer\"><div class=\"casual-answer\">\n<strong>x^e</strong> funksiyasının inteqralını hesablamaq istəyirsinizsə, əslində sadə bir ifadenin qarşısındayıq. Burada e, təbii logaritmanın bazası olan sabit bir ədəddir. İntegral aşağıdakı şəkildə hesablanır:\n\n∫ x^e dx = (1/(e+1)) * x^(e+1) + C\n\nBurada C inteqralın sabitidir. Ümid edirəm, bu izahat sizin üçün aydın oldu. Daha ətraflı bir suala ehtiyacınız varsa, buradayam!\n</div></div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "14",
+        "timestamp": "2025-06-21T10:38:22.071Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e",
+        "id": "15",
+        "timestamp": "2025-06-21T10:40:05.710Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\"><p>Integəralın məsələsi ilə bağlı bir neçə mənbə təqdim olunub, <strong>x^e</strong> funksiyasının inteqralı isə riyazi bir məsələdir və təqdim olunan hüquqi mənbələr inteqral haqqındakı suala birbaşa cavab təmin etmir.</p>\n\n<p>Lakin, x^e funksiyası üçün riyazi inteqral aşağıdakı formada hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqralın sabitidir və <strong>e</strong> təbii logaritmanın bazasıdır, təqribən 2.71828 ədədinə bərabərdir.</p>\n\n<p>Bu izahat inteqral riyaziyyatına aid bir məsələdir və hüquqi səviyyədə hər hansı bir əlaqəsi yoxdur. İstənilən halda, başqa bir hüquqi və ya mülki məsələ ilə bağlı sualınız varsa, mənə bildirin!</p></div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "16",
+        "timestamp": "2025-06-21T10:40:11.978Z"
+      },
+      {
+        "role": "user",
+        "content": "and",
+        "id": "17",
+        "timestamp": "2025-06-21T10:40:18.855Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\nGörünür, sualın davamını yazmaq istəyirdiniz! Riyazi və ya hüquqi mövzularda daha çox detaylara ehtiyacınız varsa, izah etməyə hazıram. Hər hansısa hüquqi və ya digər bir sualınızı gözləyirəm!\n</div></div>",
+        "id": "18",
+        "timestamp": "2025-06-21T10:40:21.521Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e",
+        "id": "19",
+        "timestamp": "2025-06-21T10:43:51.852Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\"><p>Riyazi inteqral təfsiri hüquqi mənbələrdə tapılmır, lakin sizin sualınıza bir cavab təqdim etdim. Funksiya <strong>x^e</strong> üçün inteqral aşağıdakı şəkildə hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p> Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritma bazası, təqribən 2.71828-dir.</p>\n\n<p>Əgər daha çox riyazi və ya hüquqi mövzularda suallarınız varsa, mən buradayam!</p></div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "20",
+        "timestamp": "2025-06-21T10:43:56.254Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "21",
+        "timestamp": "2025-06-21T10:45:48.928Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\"><p>Funksiya <strong>x^e</strong> üçün inteqral aşağıdakı düsturla hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> natural logaritmanın bazası, təqribən 2.71828-dir. Bu məsələ riyazi məsələlərə aid olduğu üçün təqdim olunmuş hüquqi mənbələr bu suala birbaşa cavab vermir.</p></div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "22",
+        "timestamp": "2025-06-21T10:45:52.735Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "23",
+        "timestamp": "2025-06-21T10:47:49.661Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\">\n<p>Soruşduğunuz sual riyaziyyat ilə bağlıdır və hüquqi mənbələrdə birbaşa cavab yoxdur. Lakin riyazi baxımdan inteqralı aşağıdakı kimi hesablamaq olar:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritma bazasıdır, təqribən 2.71828-ə bərabərdir.</p>\n</div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "24",
+        "timestamp": "2025-06-21T10:47:54.179Z"
+      },
+      {
+        "role": "user",
+        "content": "Salam",
+        "id": "25",
+        "timestamp": "2025-06-21T10:48:04.849Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Salam! Necəsiniz? Hər hansısa hüquqi mövzuya dair sualınız varsa, mən buradayam. :)</p>\n</div></div>",
+        "id": "26",
+        "timestamp": "2025-06-21T10:48:07.101Z"
+      },
+      {
+        "role": "user",
+        "content": "necense",
+        "id": "27",
+        "timestamp": "2025-06-21T10:48:10.791Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Mən yaxşıyam, çox sağ olun! Ümid edirəm siz də yaxşısınız. :) Hər hansısa sualınız və ya hüquqi məsələlərlə bağlı maraqlandığınız bir mövzu varsa, mən kömək etməyə hazıram.</p></div></div>",
+        "id": "28",
+        "timestamp": "2025-06-21T10:48:12.387Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "29",
+        "timestamp": "2025-06-21T10:50:27.064Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\">\n<p>Sualınız riyazi inteqrallarla bağlıdır və hüquqi mənbələr bu sualla əlaqəli deyil. Lakin riyazi cəhətdən <strong>x^e</strong> funksiyasının inteqralı aşağıdakı kimi hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritmanın əsasını təmsil edir, təqribən 2.71828. Ümid edirəm bu cavab sizin sualınıza kömək edir.</p>\n</div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "30",
+        "timestamp": "2025-06-21T10:50:31.626Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "31",
+        "timestamp": "2025-06-21T10:51:36.304Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\">\n<p>Sizin sualınız riyaziyyatla bağlı olduğundan Azərbaycan hüququ ilə bağlı təqdim edilmiş mənbələrlə əlaqəli deyil. Lakin riyazi baxımdan <strong>x^e</strong> funksiyasının inteqralı aşağıdakı kimi hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritmanın əsasını təmsil edir (təqribən 2.71828). Ümid edirəm bu cavab sizin üçün faydalıdır.</p>\n</div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "32",
+        "timestamp": "2025-06-21T10:51:40.232Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "33",
+        "timestamp": "2025-06-21T10:52:43.215Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\">\n<p>Sizin təqdim etdiyiniz sual riyaziyyatla bağlıdır və göstərilən hüquqi mənbələrlə əlaqəli deyil. Lakin matematik baxımdan <strong>x^e</strong> funksiyasının inteqralı aşağıda verilmiş şəkildə hesablana bilər:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> təbii logaritmanın əsasını təmsil edir (təqribən 2.71828). Ümid edirəm ki, bu cavab sualınıza kömək edər.</p>\n</div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "34",
+        "timestamp": "2025-06-21T10:52:46.492Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "35",
+        "timestamp": "2025-06-21T10:53:57.380Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\"><div class=\"legal-answer\">\n<p>Sizin sualınız riyaziyyatla bağlı olduğundan, təqdim olunan hüquqi mənbələr bu konteksdə uyğun deyil. Lakin riyaziyyat sahəsində <strong>x^e</strong> funksiyasının inteqralı aşağıdakı kimi hesablana bilər:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritmanın əsasını (təqribən 2.71828) təmsil edir. Ümid edirəm bu cavab rəqəmsal sualınıza cavab verir.</p>\n</div></div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "36",
+        "timestamp": "2025-06-21T10:54:00.740Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "37",
+        "timestamp": "2025-06-21T10:55:25.010Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"legal-answer\"><div class=\"legal-answer\"><div class=\"legal-answer\">\n<p>Sizin təqdim etdiyiniz sual riyaziyyatla bağlıdır və göstərilən hüquqi mənbələrlə əlaqəli deyil. Lakin riyazi baxımdan <strong>x^e</strong> funksiyasının inteqralı aşağıdakı şəkildə hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> təbii logaritmanın əsasını, yəni təqribən 2.71828-i təmsil edir. Ümid edirəm bu açıqlama sualınızı cavablandırır.</p>\n</div></div></div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "38",
+        "timestamp": "2025-06-21T10:55:28.723Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "39",
+        "timestamp": "2025-06-21T10:56:40.013Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Riyazi baxımdan <strong>x^e</strong> funksiyasının inteqralı aşağıdakı kimi ifadə olunur:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritmanın əsasını (təqribən 2.71828) təmsil edir. Ümid edirəm ki, bu açıqlama sizə yardım edir. Əgər hüquqi bir sualınız varsa, məmnuniyyətlə kömək edərəm!</p>\n</div></div>",
+        "id": "40",
+        "timestamp": "2025-06-21T10:56:42.938Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "41",
+        "timestamp": "2025-06-21T10:58:23.955Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Görünür, bu sual həqiqətən də maraqlandırır! Xoş gəlmisiniz! <strong>x^e</strong> funksiyasının inteqralını bir daha təkrarlayım:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitini təmsil edir və <strong>e</strong> təbii logaritmanın əsası, təqribən 2.71828, olaraq bilinir. Əgər digər məsələlərdə də kömək lazımdırsa, sual verməyə davam edin!</p>\n</div></div>",
+        "id": "42",
+        "timestamp": "2025-06-21T10:58:26.617Z"
+      },
+      {
+        "role": "user",
+        "content": "so what is integral of x power e\n",
+        "id": "43",
+        "timestamp": "2025-06-21T11:00:23.658Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Sizin marağınızı anlayıram! Təkrar edim, <strong>x^e</strong> funksiyasının inteqralı belə hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritmanın əsasını göstərir. Bu riyazi məsələdən başqa, hüquqi suallarınız varsa, çəkinmədən yazın!</p>\n</div></div>",
+        "id": "44",
+        "timestamp": "2025-06-21T11:00:26.186Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Anladım, görünür ki, təkrar etməni istəyirsiniz. <strong>x^e</strong> funksiyasının inteqralı aşağıdakı kimi ifadə edilir:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> təqribən 2.71828 olan təbii logaritmanın əsasını təmsil edir. Bu məsələni aydınlaşdırdımsa, digər suallarınızı da cavablandirmaqdan məmnun olaram!</p>\n</div></div></div>",
+        "id": "45",
+        "timestamp": "2025-06-21T11:03:07.104Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Xoş gördük! Görünür bu mövzu həqiqətən diqqətinizi cəlb edir. <strong>x^e</strong> funksiyasının inteqralı belədir:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitidir və <strong>e</strong> isə təbii logaritmanın əsasını göstərir. Rəqəmsal məsələlər arasında çətinlik çəkməyin. Əgər hüquq və ya digər mövzularda suallarınız varsa, mənə bildirə bilərsiz!</p>\n</div></div>",
+        "id": "46",
+        "timestamp": "2025-06-21T11:03:25.347Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Görünür bu sualınızı dəfələrlə vermişsiniz! <strong>x^e</strong> funksiyasının inteqralı standart bir formul ilə hesablanır:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Burada <strong>C</strong> inteqral sabitini təmsil edir və <strong>e</strong> isə 2.71828 təqribənində olan bir ədəddir. Əgər başqa mövzulara keçmək istəsəniz, yaxud hüquqi bir məsələ ilə maraqlansanız, çəkinmədən sual verin!</p>\n</div></div></div>",
+        "id": "47",
+        "timestamp": "2025-06-21T11:04:09.248Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"legal-answer\"><div class=\"casual-answer\">\n<p>Görünür, bu sualınızla hüquqi mənbələri təqdim etməkdə məqsədiniz barədə bir az aydınlıq gətirməsi faydalı olacaq, çünki hal-hazırda təqdim edilən mənbələr inteqrasiya hesablamaları ilə əlaqəli görünmür. Ancaq, sorğunuz riyazi bir məsələyə aiddirsə, bir daha qeyd edim:</p>\n\n<ol>\n    <li>∫ x^e dx = (1/(e+1)) * x^(e+1) + C</li>\n</ol>\n\n<p>Əgər hüquqi məsələlər barədə suallarınız varsa, lütfən, konkret sahə və ya məsələ ilə əlaqədar suallarınızı mənə bildirin. Mövcud mənbələriniz təqdim edilən məsələyə aid görünmədiyi üçün burada istifadə edilmədi.</p>\n</div></div><br><div class=\"legal-sources\"><strong>İstinadlar:</strong><ul><li>[1] <a href=\"https://e-qanun.az/framework/25675\" target=\"_blank\">Q/02 - E-QANUN</a></li><li>[2] <a href=\"https://meclis.gov.az/neshrler/Soyqirim.pdf\" target=\"_blank\">Untitled</a></li><li>[3] <a href=\"https://meclis.gov.az/neshrler/musteqil_dovletimiz_ve_parlamentimiz.pdf\" target=\"_blank\">MÜSTƏQİL DÖVLƏTİMİZ</a></li><li>[4] <a href=\"https://meclis.gov.az/neshrler/Xocali-Senedler_toplusu-2018_en.pdf\" target=\"_blank\">International recognition of the Khojaly genocide: activities and ...</a></li></ul></div>",
+        "id": "48",
+        "timestamp": "2025-06-21T11:05:14.857Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Salam! Necəsiniz? Sizə burada necə kömək edə bilərəm? Hər hansı hüquqi sualınız varsa, cavablandırmaqdan məmnun olaram!</p>\n</div></div>",
+        "id": "49",
+        "timestamp": "2025-06-21T11:11:28.676Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Salam! Nəsə kömək edə biləcəyim bir şey varmı? Hüquqi bir sualınız varsa, məni buradayam!</p>\n</div></div>",
+        "id": "50",
+        "timestamp": "2025-06-21T11:13:09.486Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Salam! Necəsiniz? Hər hansı hüquqi mövzuda sualınız varsa, mənə bildirin, kömək etməkdən məmnun olaram!</p>\n</div></div>",
+        "id": "51",
+        "timestamp": "2025-06-21T11:13:15.002Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Salam! Necəsiniz? Sizə necə kömək edə bilərəm? Hüquqi suallarınız üçün buradayam!</p>\n</div></div></div>",
+        "id": "52",
+        "timestamp": "2025-06-21T11:13:43.334Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\">\n<p>Salam! Necəsiniz? Sizə hər hansı hüquqi sual və ya problemlə bağlı kömək edə bilərəm?</p>\n</div></div>",
+        "id": "53",
+        "timestamp": "2025-06-21T11:13:51.254Z"
+      },
+      {
+        "role": "user",
+        "content": "Salam",
+        "id": "54",
+        "timestamp": "2025-06-21T11:16:25.610Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Salam! Necəsən? Hər hansı bir hüquqi məsələn varsa, kömək etməkdən sevinc duyaram!</p></div></div>",
+        "id": "55",
+        "timestamp": "2025-06-21T11:16:28.039Z"
+      },
+      {
+        "role": "user",
+        "content": "Hey",
+        "id": "56",
+        "timestamp": "2025-06-21T11:16:35.203Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Sizi yenidən daxil olmaqdan məmnum oldum! Nə ilə bağlı kömək edə bilərəm? Hər hansı <strong>hüquqi</strong> sualınız varsa, buradayam!</p></div></div>",
+        "id": "57",
+        "timestamp": "2025-06-21T11:16:36.918Z"
+      },
+      {
+        "role": "user",
+        "content": "Salam",
+        "id": "58",
+        "timestamp": "2025-06-21T11:19:17.237Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Necəsiniz? Hər hansısa hüquqi məsələniz varmı? Hazırda nə ilə maraqlanırsınız?</p></div></div>",
+        "id": "59",
+        "timestamp": "2025-06-21T11:19:19.227Z"
+      },
+      {
+        "role": "user",
+        "content": "Sa",
+        "id": "60",
+        "timestamp": "2025-06-21T11:19:22.996Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Sualınız varsa, çəkinmədən soruşa bilərsiniz! Hüquqi məsələlərlə bağlı nə isə maraqlandığınız varmı?</p></div></div>",
+        "id": "61",
+        "timestamp": "2025-06-21T11:19:24.465Z"
+      },
+      {
+        "role": "user",
+        "content": "asdsad",
+        "id": "62",
+        "timestamp": "2025-06-21T11:21:30.286Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Sizi anlamadım, amma hər hansı hüquqi dəstəyə ehtiyacınız varsa, həmişə buradayam. Başqa nə ilə maraqlanırsınız?</p></div></div>",
+        "id": "63",
+        "timestamp": "2025-06-21T11:21:32.233Z"
+      },
+      {
+        "role": "user",
+        "content": "Hey what's up",
+        "id": "64",
+        "timestamp": "2025-06-21T11:24:19.650Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Salam! İşlər qaydasındadır. Sənin üçün necə keçib gün? Hər hansı hüquqi bir məsələn varsa, mənə bildirin!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "en",
+        "id": "65",
+        "timestamp": "2025-06-21T11:24:21.225Z"
+      },
+      {
+        "role": "user",
+        "content": "hey",
+        "id": "66",
+        "timestamp": "2025-06-21T11:26:03.249Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Salam! Sizə necə kömək edə bilərəm? Hər hansı <strong>hüquqi</strong> sualınız varsa, buyurun!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "az",
+        "id": "67",
+        "timestamp": "2025-06-21T11:26:05.292Z"
+      },
+      {
+        "role": "user",
+        "content": "whats up",
+        "id": "68",
+        "timestamp": "2025-06-21T11:26:19.902Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Əla! Təşəkkür edirəm ki, burada olduğunuz üçün. Hər hansı bir <strong>hüquqi</strong> məsələdə köməyə ehtiyacınız varsa, mənə bildirin!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "en",
+        "id": "69",
+        "timestamp": "2025-06-21T11:26:21.451Z"
+      },
+      {
+        "role": "user",
+        "content": "how is it going",
+        "id": "70",
+        "timestamp": "2025-06-21T11:26:35.510Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Gözəl gedir, təşəkkürlər! Sizin necədir? Hər hansı bir <strong>hüquqi</strong> sualınız varsa, kömək etməyə hazıram!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "en",
+        "id": "71",
+        "timestamp": "2025-06-21T11:26:37.353Z"
+      },
+      {
+        "role": "user",
+        "content": "what s up",
+        "id": "72",
+        "timestamp": "2025-06-21T11:28:56.434Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Hər şey yolundadır, təşəkkürlər! Sizdə nə var, nə yox? Hər hansı bir <strong>hüquq</strong> mövzusunda suallarınız varsa, mən buradayam!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "en",
+        "id": "73",
+        "timestamp": "2025-06-21T11:28:59.394Z"
+      },
+      {
+        "role": "user",
+        "content": "how is it going",
+        "id": "74",
+        "timestamp": "2025-06-21T11:29:08.188Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Mən yaxşıyam, təşəkkür edirəm! Sizin necədir? Hər hansı bir <strong>qanun</strong> və ya <strong>hüquqi</strong> məsələdə kömək etməkdən məmnun olaram!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "az",
+        "id": "75",
+        "timestamp": "2025-06-21T11:29:09.526Z"
+      },
+      {
+        "role": "user",
+        "content": "hey buddy",
+        "id": "76",
+        "timestamp": "2025-06-21T11:39:42.297Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><div class=\"casual-answer\"><p>Hey! Nə var, nə yox? Hər hansı bir <strong>mülk</strong> və ya başqa hüquqi məsələlərdə köməyə ehtiyacınız varsa, çəkinmədən soruşa bilərsiniz!</p></div></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "az",
+        "id": "77",
+        "timestamp": "2025-06-21T11:39:43.792Z"
+      },
+      {
+        "role": "user",
+        "content": "how is it going can you help me in some stuff",
+        "id": "78",
+        "timestamp": "2025-06-21T11:40:01.968Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"casual-answer\"><div class=\"casual-answer\"><p>Mən yaxşıyam, təşəkkür edirəm! Sizin necədir? Əlbəttə, nədə köməyə ehtiyacınız var? Əgər məsələniz <strong>hüquq</strong> və ya <strong>qanunla</strong> bağlıdırsa, sizə dəstək olmaqdan məmnun olaram!</p></div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "az",
+        "id": "79",
+        "timestamp": "2025-06-21T11:40:04.542Z"
+      },
+      {
+        "role": "user",
+        "content": "what are your limitations and purpose",
+        "id": "80",
+        "timestamp": "2025-06-21T11:40:12.722Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"vague-inquiry\"><div class=\"vague-inquiry\">\n    <p>Mənim əsas məqsədim hüquqi məsələlərdə sizə kömək etməkdir. Lakin, nəzərə alın ki, mən yalnız məlumat və tövsiyələr verə bilərəm. Əsl hüquqi məsləhət üçün hər zaman bir hüquq mütəxəssisi ilə əlaqə qurmağı tövsiyə edirəm. Sizə daha yaxşı kömək edə bilməmdən ötrü konkret nə haqda danışmaq istədiyinizi mənə söyləsəniz əla olar. Hansı növ hüquqi məsələ üzərində işləyirsiniz və ya hansı sənədlərə ehtiyacınız var?</p>\n</div></div>",
+        "originalLanguage": "az",
+        "displayLanguage": "az",
+        "id": "81",
+        "timestamp": "2025-06-21T11:40:16.324Z"
+      },
+      {
+        "role": "user",
+        "content": "what are your limitations and purpose",
+        "id": "82",
+        "timestamp": "2025-06-21T11:42:30.088Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"vague-inquiry\">Mənim əsas məqsədim hüquqi məsələlərdə sizə dəstək olmaqdır. Sərhədlərimə gəldikdə isə, mən yalnız məlumat və ümumi tövsiyə verə bilərəm, lakin əsl hüquqi təhlil və məsləhət üçün peşəkar bir hüquqşünas ilə əlaqə saxlamaq lazımdır. Mən sizin hüquqi məsələləriniz barədə detallı məlumat toplamağa və sizə doğru istiqamət göstərməyə çalışacam. Hər hansı konkret sualınız varsa, buyurun soruşun!</div>",
+        "originalLanguage": "az",
+        "displayLanguage": "en",
+        "id": "83",
+        "timestamp": "2025-06-21T11:42:32.961Z"
+      },
+      {
+        "role": "user",
+        "content": "what are your limitations and purpose\n",
+        "id": "84",
+        "timestamp": "2025-06-21T11:43:01.362Z"
+      },
+      {
+        "role": "assistant",
+        "content": "<div class=\"vague-inquiry\">Mənim əsas məqsədim hüquqi məsələlərdə sizə dəstək göstərməkdir. Mən hüquqa aid məlumat və ümumi tövsiyələr təqdim edə bilərəm. Buna baxmayaraq, spesifik hüquqi təhlil və məsləhət üçün hər zaman peşəkar hüquqşünasa müraciət etməyi tövsiyə edirəm. Mən hüquqi konseptlər haqqında aydınlıq gətirmək və probleminizi daha yaxşı anlamaq üçün buradayam. Hər hansı bir konkret məsələ və ya sualınız varsa, daha çox məlumat əldə etmək üçün bu barədə ətraflı danışa bilərik.</div>",
+        "originalLanguage": "az",
+        "displayLanguage": "az",
+        "id": "85",
+        "timestamp": "2025-06-21T11:43:04.880Z"
+      }
+    ],
+    "createdAt": "2025-06-21T10:33:52.629Z",
+    "updatedAt": "2025-06-21T11:43:04.880Z"
   }
 }

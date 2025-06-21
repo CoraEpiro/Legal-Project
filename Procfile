@@ -1,1 +1,0 @@
-web: PYTHONPATH=app gunicorn app:app

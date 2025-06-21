@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'katex/dist/katex.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-legal-50 text-legal-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-legal-200 hover:bg-legal-300 text-legal-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-legal-500 focus:ring-offset-2;
+  }
+  
+  .input-field {
+    @apply w-full px-3 py-2 border border-legal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-legal-200 p-6;
+  }
+  
+  .message-user {
+    @apply bg-primary-100 border-primary-200 text-primary-900 ml-auto;
+  }
+  
+  .message-bot {
+    @apply bg-legal-100 border-legal-200 text-legal-900;
+  }
+  
+  .message-legal {
+    @apply bg-accent-50 border-accent-200 text-accent-900;
+  }
+  
+  .message-casual {
+    @apply bg-blue-50 border-blue-200 text-blue-900;
+  }
+  
+  .message-vague {
+    @apply bg-orange-50 border-orange-200 text-orange-900;
+  }
+  
+  /* Enhanced prose styling for markdown content */
+  .prose {
+    @apply text-legal-900;
+  }
+  
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+  
+  .prose strong {
+    @apply font-semibold text-legal-900;
+  }
+  
+  .prose ul, .prose ol {
+    @apply mb-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2;
+  }
+  
+  .prose a {
+    @apply text-primary-600 hover:text-primary-700 underline;
+  }
+  
+  .prose code {
+    @apply bg-transparent px-1 py-0.5 rounded text-sm font-mono;
+  }
+  
+  .prose pre {
+    @apply bg-transparent p-4 rounded-lg overflow-x-auto;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-legal-300 pl-4 italic text-legal-700;
+  }
+
+  /* Force all prose text to inherit color from its parent message bubble */
+  .prose :where(p, li, strong, blockquote, a, h1, h2, h3, h4):not(:where([class~="not-prose"] *)) {
+    color: inherit;
+  }
+
+  /* Force pre-wrap to prevent horizontal overflow */
+  .prose pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .message-bot, .message-user, .message-legal, .message-casual, .message-vague {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+} 
