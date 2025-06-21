@@ -1,9 +1,9 @@
 {
-  "1": {
-    "username": "Ali Guliyev",
-    "name": "Ali Guliyev",
-    "surname": "",
+  "2": {
     "email": "aguliyev45@gmail.com",
-    "password": "ali70104002"
+    "password": "$2a$12$lhnj3a5CXE84KHj1MmYjO.XsYIne/TVy3EOzIjK04JZvWOi9gPAFW",
+    "username": "ali",
+    "name": "Ali",
+    "surname": ""
   }
 }
